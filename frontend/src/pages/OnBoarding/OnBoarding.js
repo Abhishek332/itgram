@@ -13,14 +13,12 @@ const OnBoarding = () => {
               A place to connect all the IT industry professionals, connect with
               them and share knowleadge by posts.
             </p>
-            <button>
-              <Link to="/authenticator/?theme=signup" className="button">
-                Join Us Now
-              </Link>
-            </button>
+            <Link to="/authenticator/?signup" className="button">
+              <button>Join Us Now</button>
+            </Link>
             <p className="signin">
               Already have an account?{" "}
-              <Link to="/authenticator/?theme=signin" className="link">
+              <Link to="/authenticator/?signin" className="link">
                 <span>SignIn</span>
               </Link>
             </p>

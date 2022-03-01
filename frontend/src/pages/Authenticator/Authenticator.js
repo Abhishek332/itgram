@@ -1,7 +1,12 @@
 import "./Authenticator.scss";
 import { WelCome } from "../../assets/images";
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const Authenticator = () => {
+  const { search } = useLocation();
+  const [showSignUp, setShowSignUp] = useState(search.includes("signup"));
+  console.log(showSignUp);
   return (
     <>
       <div className="authenticator-container">
