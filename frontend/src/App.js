@@ -1,9 +1,11 @@
-import React from 'react'
+import { Authenticator } from "./pages";
 
 const App = () => {
   return (
-    <div className="box">App</div>
-  )
-}
+    <>
+      <Authenticator />
+    </>
+  );
+};
 
-export default App
+export default App;

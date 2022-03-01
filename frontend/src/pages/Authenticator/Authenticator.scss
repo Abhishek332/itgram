@@ -1,0 +1,13 @@
+.authenticator-container {
+  height: 100vh;
+  width: 100vw;
+  .auth-box {
+    height: 80vh;
+    width: 85vw;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+  }
+}
