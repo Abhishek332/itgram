@@ -1,43 +1,52 @@
-@import "../../utils/sass/mixin.scss";
-@import "../../utils/sass/variables.scss";
+@import '../../utils/sass/mixin.scss';
+@import '../../utils/sass/variables.scss';
 
 .authenticator-container {
-  height: 100vh;
-  width: 100vw;
-  @include flexCenter(center, center, row);
-  .auth-box {
-    height: 80vh;
-    width: 85vw;
-    @include flexCenter(space-between, center, row);
-    .form-box {
-      padding: 20px;
-      width: 470px;
-      background-color: rgba(253, 243, 243, 0.883);
-      border-radius: 10px;
-      @include flexCenter(center, center, column);
-      & > * {
-        outline: none;
-        border: none;
-        height: 45px;
-      }
-      input {
-        width: 100%;
-        padding: 10px;
-        box-shadow: 1px 1px 3px rgba(245, 188, 188, 0.883);
-        margin: 20px;
-      }
-      button {
-        background-color: $primary;
-        color: white;
-        width: 50%;
-        font-weight: 600;
-        font-size: 16px;
-        cursor: pointer;
-      }
-    }
-    img {
-      width: 50%;
-      height: auto;
-    }
-  }
+	height: 100vh;
+	width: 100vw;
+	@include flexCenter(center, center, row);
+	.auth-box {
+		height: 80vh;
+		width: 85vw;
+		@include flexCenter(space-between, center, row);
+		.form-box {
+			padding: 20px;
+			width: 470px;
+			background-color: $primary_1;
+			border-radius: 10px;
+			@include flexCenter(center, center, column);
+			& > * {
+				outline: none;
+				border: none;
+			}
+			input {
+				height: 45px;
+				width: 100%;
+				padding: 10px;
+				box-shadow: 1px 1px 3px rgba(245, 188, 188, 0.883);
+				margin: 20px;
+			}
+			button {
+				background-color: $primary;
+				color: white;
+				height: 45px;
+				width: 50%;
+				font-weight: 600;
+				font-size: 16px;
+				cursor: pointer;
+			}
+			p {
+				font-size: 14px;
+				margin-top: 15px;
+				span {
+					font-weight: 600;
+					cursor: pointer;
+				}
+			}
+		}
+		img {
+			width: 50%;
+			height: auto;
+		}
+	}
 }
