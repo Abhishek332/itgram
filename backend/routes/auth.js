@@ -1,0 +1,55 @@
+import express from "express";
+import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
+import JWT from "jsonwebtoken";
+import { JWT_SECRET } from "../keys.js";
+import { requireLogin } from "../middleware/requireLogin.js";
+
+const User = mongoose.model("User");
+export const AuthRouter = express.Router();
+
+AuthRouter.post("/signup", (req, res) => {
+  const { name, email, password } = req.body;
+  if (!name || !email || !password)
+    return res.status(422).json({ error: "Please fill all the fields" });
+  User.findOne({ email })
+    .then((existUser) => {
+      if (existUser)
+        return res
+          .status(422)
+          .json({ error: "User already exists with this email" });
+      bcrypt.hash(password, 12).then((hashedPassword) => {
+        const user = new User({ name, email, password: hashedPassword });
+        user
+          .save()
+          .then((user) => res.json({ message: "Registered Successfully" }))
+          .catch((err) => console.log(err));
+      });
+    })
+    .catch((err) => console.log(err));
+});
+
+AuthRouter.post("/signin", (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password)
+    return res.status(422).json({ error: "Please add email or password" });
+  User.findOne({ email })
+    .then((userFound) => {
+      if (!userFound)
+        return res.status(422).json({ error: "Invalid email or password" });
+      bcrypt
+        .compare(password, userFound.password)
+        .then((doMatch) => {
+          if (doMatch) {
+            const token = JWT.sign({ _id: userFound._id }, JWT_SECRET);
+            return res.json({
+              message: "Login Successful",
+              token,
+            });
+          }
+          res.status(422).json({ message: "Invalid email or password" });
+        })
+        .catch((err) => console.log(err));
+    })
+    .catch((err) => console.log(err));
+});
