@@ -52,8 +52,7 @@
 @media (max-width: 768px) {
 	.onboarding-container {
 		.outer-box {
-			flex-direction: column-reverse;
-			justify-content: flex-start;
+			@include flexCenter(center, center, column-reverse);
 			width: 90%;
 			height: 90%;
 			.inner-box {
