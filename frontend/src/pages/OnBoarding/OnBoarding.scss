@@ -1,0 +1,69 @@
+@import "../../utils/sass/mixin.scss";
+@import "../../utils/sass/variables.scss";
+
+.onboarding-container {
+  height: 100vh;
+  width: 100vw;
+  @include flexCenter(center, center, row);
+  .outer-box {
+    height: 80vh;
+    width: 85vw;
+    @include flexCenter(space-between, center, row);
+    .inner-box {
+      width: 50%;
+      h1 {
+        color: $primary;
+        font-size: 40px;
+      }
+      p {
+        color: $secondary;
+        max-width: 80%;
+        margin: 15px 0px;
+      }
+      button {
+        background-color: $primary;
+        padding: 10px 50px;
+        color: white;
+        font-weight: medium;
+        font-size: 16px;
+        border: none;
+      }
+      .signin {
+        font-size: 14px;
+        .link {
+          color: $primary;
+          cursor: pointer;
+          font-weight: bold;
+        }
+      }
+    }
+    img {
+      width: 50%;
+      height: auto;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .onboarding-container {
+    .outer-box {
+      flex-direction: column;
+      justify-content: flex-start;
+      width: 90%;
+      height: 90%;
+      .inner-box {
+        width: 100%;
+        & > * {
+          text-align: center;
+        }
+        p {
+          max-width: 100%;
+        }
+        @include flexCenter(center, center, column);
+      }
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

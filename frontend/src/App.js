@@ -1,9 +1,15 @@
-import { Authenticator } from "./pages";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { OnBoarding, Authenticator } from "./pages";
 
 const App = () => {
   return (
     <>
-      <Authenticator />
+      <Router>
+        <Routes>
+          <Route path="/" element={<OnBoarding />} />
+          <Route path="/authenticator" element={<Authenticator />} />
+        </Routes>
+      </Router>
     </>
   );
 };

@@ -7,12 +7,15 @@ const Authenticator = () => {
       <div className="authenticator-container">
         <div className="auth-box">
           <div className="form-box">
-            <label for="name">Name</label>
-            <input type="text" placeholder="Enter your name" />
+            <form>
+              <label style={{ display: "flex", flexDirection: "column" }}>
+                Name:
+                <input type="text" name="name" />
+              </label>
+              <input type="submit" value="Submit" />
+            </form>
           </div>
-          <div className="image-box">
-            <img src={WelCome} alt="" />
-          </div>
+          <img src={WelCome} alt="" />
         </div>
       </div>
     </>
