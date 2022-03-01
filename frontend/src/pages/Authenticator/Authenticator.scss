@@ -14,22 +14,25 @@
 			width: 470px;
 			background-color: $primary_1;
 			border-radius: 10px;
+			margin-right: 20px;
 			@include flexCenter(center, center, column);
 			& > * {
 				outline: none;
 				border: none;
 			}
-			input {
+			input,
+			button {
 				height: 45px;
+				margin: 20px;
+			}
+			input {
 				width: 100%;
 				padding: 10px;
 				box-shadow: 1px 1px 3px rgba(245, 188, 188, 0.883);
-				margin: 20px;
 			}
 			button {
 				background-color: $primary;
 				color: white;
-				height: 45px;
 				width: 50%;
 				font-weight: 600;
 				font-size: 16px;
@@ -37,7 +40,6 @@
 			}
 			p {
 				font-size: 14px;
-				margin-top: 15px;
 				span {
 					font-weight: 600;
 					cursor: pointer;
@@ -47,6 +49,27 @@
 		img {
 			width: 50%;
 			height: auto;
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	.authenticator-container {
+		.auth-box {
+			width: 95vw;
+			flex-direction: column-reverse;
+			.form-box {
+				width: 90%;
+				margin-right: 0;
+				input,
+				button {
+					height: 40px;
+					margin: 15px;
+				}
+			}
+			img {
+				width: 75%;
+			}
 		}
 	}
 }
