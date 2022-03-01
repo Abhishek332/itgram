@@ -1,4 +1,5 @@
 @import "../../utils/sass/mixin.scss";
+@import "../../utils/sass/variables.scss";
 
 .authenticator-container {
   height: 100vh;
@@ -7,13 +8,32 @@
   .auth-box {
     height: 80vh;
     width: 85vw;
-    // border: 1px solid black;
     @include flexCenter(space-between, center, row);
     .form-box {
-      height: 450px;
-      width: 400px;
-      background-color: rgba(255, 240, 240, 0.808);
+      padding: 20px;
+      width: 470px;
+      background-color: rgba(253, 243, 243, 0.883);
       border-radius: 10px;
+      @include flexCenter(center, center, column);
+      & > * {
+        outline: none;
+        border: none;
+        height: 45px;
+      }
+      input {
+        width: 100%;
+        padding: 10px;
+        box-shadow: 1px 1px 3px rgba(245, 188, 188, 0.883);
+        margin: 20px;
+      }
+      button {
+        background-color: $primary;
+        color: white;
+        width: 50%;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+      }
     }
     img {
       width: 50%;
