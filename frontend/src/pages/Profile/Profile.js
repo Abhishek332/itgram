@@ -1,4 +1,5 @@
 import "./Profile.scss";
+import { NavBar } from "../../components";
 
 const Profile = () => {
   const gallery = [
@@ -10,7 +11,9 @@ const Profile = () => {
   ];
 
   return (
-    <div className="page-container">
+   <>
+   <NavBar/>
+   <div className="page-container">
       <div className="profile-page-container">
         <div className="profile-header">
           <div className="avatar-box">
@@ -41,6 +44,7 @@ const Profile = () => {
         </div>
       </div>
     </div>
+   </>
   );
 };
 
