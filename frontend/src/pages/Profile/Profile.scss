@@ -5,13 +5,14 @@
   width: 100%;
   padding: 25px 15px;
   .profile-header {
-    @include flexCenter(space-between, center, row);
+    @include flexCenter(flex-start, center, row);
     .avatar-box {
       flex: 0.25;
       aspect-ratio: 1/1;
       overflow: hidden;
       border-radius: 50%;
       position: relative;
+      margin-right: 5%;
       img {
         position: absolute;
         width: 100%;
@@ -21,7 +22,7 @@
       }
     }
     .profile-info {
-      flex: 0.65;
+      flex: 0.5;
       .user-info {
         @include flexCenter(flex-start, center, row);
         .username {
@@ -42,7 +43,6 @@
       }
       .other-info {
         @include flexCenter(space-between, center, row);
-        width: 60%;
         margin-top: 20px;
         p {
           font-size: 22px;
@@ -60,7 +60,7 @@
     grid-template-columns: auto auto auto;
     gap: 20px;
     .gallery-item {
-      padding-top: 100%;
+      aspect-ratio: 1/1;
       position: relative;
       overflow: hidden;
       border-radius: 3px;
@@ -87,6 +87,7 @@
         }
         .other-info {
           width: 100%;
+          margin-top: 10px;
           p {
             font-size: 16px;
           }
