@@ -1,75 +1,70 @@
-@import '../../utils/sass/mixin.scss';
-@import '../../utils/sass/variables.scss';
+@import "../../utils/sass/mixin.scss";
+@import "../../utils/sass/variables.scss";
 
 .authenticator-container {
-	height: 100vh;
-	width: 100vw;
-	@include flexCenter(center, center, row);
-	.auth-box {
-		height: 80vh;
-		width: 85vw;
-		@include flexCenter(space-between, center, row);
-		.form-box {
-			padding: 20px;
-			width: 470px;
-			background-color: $primary_1;
-			border-radius: 10px;
-			margin-right: 20px;
-			@include flexCenter(center, center, column);
-			& > * {
-				outline: none;
-				border: none;
-			}
-			input,
-			button {
-				height: 45px;
-				margin: 20px;
-			}
-			input {
-				width: 100%;
-				padding: 10px;
-				box-shadow: 1px 1px 3px rgba(245, 188, 188, 0.883);
-			}
-			button {
-				background-color: $primary;
-				color: white;
-				width: 50%;
-				font-weight: 600;
-				font-size: 16px;
-				cursor: pointer;
-			}
-			p {
-				font-size: 14px;
-				span {
-					font-weight: 600;
-					cursor: pointer;
-				}
-			}
-		}
-		img {
-			width: 50%;
-			height: auto;
-		}
-	}
+  height: 100vh;
+  width: 100vw;
+  @include flexCenter(center, center, row);
+  .auth-box {
+    height: 80vh;
+    width: 85vw;
+    @include flexCenter(space-between, center, row);
+    .form-box {
+      padding: 20px;
+      width: 470px;
+      background-color: $primary_1;
+      border-radius: 10px;
+      margin-right: 20px;
+      @include flexCenter(center, center, column);
+      input,
+      button {
+        height: 45px;
+        margin: 20px;
+      }
+      input {
+        width: 100%;
+        padding: 10px;
+        box-shadow: 1px 1px 3px rgba(245, 188, 188, 0.883);
+      }
+      button {
+        background-color: $primary;
+        color: white;
+        width: 50%;
+        font-weight: 600;
+        font-size: 16px;
+      }
+      p {
+        font-size: 14px;
+        span {
+          font-weight: 600;
+          cursor: pointer;
+        }
+      }
+    }
+    img {
+      width: 50%;
+      height: auto;
+    }
+  }
 }
 
 @media (max-width: 768px) {
-	.authenticator-container {
-		.auth-box {
-			width: 95vw;
-			flex-direction: column-reverse;
-			.form-box {
-				width: 90%;
-				margin-right: 0;
-				input,
-				button {
-					height: 40px;
-					margin: 15px;
-				}
-			}
-			img {
-				width: 85%;
-			}
-		}
-	}
+  .authenticator-container {
+    .auth-box {
+      width: 95vw;
+      flex-direction: column-reverse;
+      .form-box {
+        width: 90%;
+        margin-right: 0;
+        input,
+        button {
+          height: 40px;
+          margin: 15px;
+        }
+      }
+      img {
+        width: 85%;
+      }
+    }
+  }
 }

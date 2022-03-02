@@ -1,4 +1,5 @@
-import Authenticator from "./Authenticator/Authenticator";
 import OnBoarding from "./OnBoarding/OnBoarding";
+import Authenticator from "./Authenticator/Authenticator";
+import Profile from "./Profile/Profile";
 
-export { Authenticator, OnBoarding };
+export { OnBoarding, Authenticator, Profile };

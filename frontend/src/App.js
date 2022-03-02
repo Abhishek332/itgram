@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { OnBoarding, Authenticator } from "./pages";
+import { OnBoarding, Authenticator, Profile } from "./pages";
 
 const App = () => {
   return (
@@ -8,6 +8,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<OnBoarding />} />
           <Route path="/authenticator" element={<Authenticator />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </Router>
     </>
