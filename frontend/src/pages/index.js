@@ -1,5 +1,6 @@
 import OnBoarding from "./OnBoarding/OnBoarding";
 import Authenticator from "./Authenticator/Authenticator";
 import Profile from "./Profile/Profile";
+import HomePage from "./HomePage/HomePage";
 
-export { OnBoarding, Authenticator, Profile };
+export { OnBoarding, Authenticator, Profile, HomePage };
