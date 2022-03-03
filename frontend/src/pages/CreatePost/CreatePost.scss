@@ -38,6 +38,9 @@
 		position: absolute;
 		background-color: $secondary_1;
 		@include flexCenter(center, center, row);
+		img {
+			width: 400px;
+		}
 	}
 }
 

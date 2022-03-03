@@ -20,7 +20,7 @@ const CreatePost = () => {
 		setLoader(true);
 		setTimeout(() => {
 			setLoader(false);
-		}, 1000);
+		}, 5000);
 	};
 
 	return (
