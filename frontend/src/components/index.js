@@ -1,3 +1,4 @@
-import NavBar from "./NavBar/NavBar";
+import NavBar from './NavBar/NavBar';
+import PostCard from './PostCard/PostCard';
 
-export {NavBar}
+export { NavBar, PostCard };
