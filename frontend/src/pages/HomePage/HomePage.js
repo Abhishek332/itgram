@@ -1,4 +1,4 @@
-import { NavBar, PostCard } from '../../components';
+import { NavBar, PostCard, Footer } from '../../components';
 import './HomePage.scss';
 
 const HomePage = () => {
@@ -18,6 +18,7 @@ const HomePage = () => {
 					<PostCard />
 				))}
 			</div>
+			<Footer />
 		</>
 	);
 };
