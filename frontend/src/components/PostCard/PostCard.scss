@@ -3,12 +3,11 @@
 
 .post-card-wrapper {
   width: 100%;
-  aspect-ratio: 3/4;
   box-shadow: 0 0 1px $secondary;
   margin-bottom: 30px;
   .header {
-    @include flexCenter(flex-start, center, row);
-    padding: 20px;
+    @include flexCenter(space-between, center, row);
+    padding: 15px;
     h3 {
       color: $primary;
       font-weight: 600;
@@ -24,8 +23,46 @@
       margin-left: 15px;
     }
   }
-  .post-img {
+  .post-img-wrapper {
+    @include flexCenter(center, center, row);
     width: 100%;
-    height: auto;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    .post-img {
+      height: 100%;
+      width: auto;
+    }
+    .like-animation {
+      position: absolute;
+      z-index: 10;
+      width: 300px;
+    }
+  }
+  .footer {
+    padding: 15px;
+    .footer-top {
+      @include flexCenter(flex-start, center, row);
+      & > * {
+        margin-right: 5px;
+        font-size: 32px;
+        color: $primary;
+      }
+    }
+    p {
+      max-width: 95%;
+    }
+    .comment-box {
+      @include flexCenter(space-between, center, row);
+      textarea {
+        flex: 1;
+        font-size: 16px;
+        padding: 5px;
+        margin: 15px 0;
+      }
+      .comment-btn {
+        margin-left: 12px;
+        font-size: 27px;
+      }
+    }
   }
 }
