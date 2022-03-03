@@ -2,7 +2,6 @@
 @import '../../utils/sass/variables.scss';
 
 .authenticator-container {
-<<<<<<< HEAD
 	height: 100vh;
 	width: 100vw;
 	@include flexCenter(center, center, row);
@@ -47,52 +46,6 @@
 			height: auto;
 		}
 	}
-=======
-  height: 100vh;
-  width: 100vw;
-  @include flexCenter(center, center, row);
-  .auth-box {
-    height: 80vh;
-    width: 85vw;
-    @include flexCenter(space-between, center, row);
-    .form-box {
-      padding: 20px;
-      width: 470px;
-      background-color: $primary_1;
-      border-radius: 10px;
-      margin-right: 20px;
-      @include flexCenter(center, center, column);
-      input,
-      button {
-        height: 45px;
-        margin: 20px;
-      }
-      input {
-        width: 100%;
-        padding: 10px;
-        box-shadow: 1px 1px 3px rgba(245, 188, 188, 0.883);
-      }
-      button {
-        background-color: $primary;
-        color: $secondary_1;
-        width: 50%;
-        font-weight: 600;
-        font-size: 16px;
-      }
-      p {
-        font-size: 14px;
-        span {
-          font-weight: 600;
-          cursor: pointer;
-        }
-      }
-    }
-    img {
-      width: 50%;
-      height: auto;
-    }
-  }
->>>>>>> a73bc105470a0b34b829e6ea75e77af6f672adc9
 }
 
 @media (max-width: 768px) {
