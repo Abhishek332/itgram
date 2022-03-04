@@ -2,16 +2,25 @@ import './CreatePost.scss';
 import { useState } from 'react';
 import { Loader3 } from '../../assets/images';
 import { NavBar } from '../../components';
+import { FileUploader } from 'react-drag-drop-files';
+
+const fileTypes = ['JPEG', 'PNG', 'GIF', 'WEBP'];
 
 const CreatePost = () => {
 	const [state, setState] = useState({
 		title: '',
 		body: '',
+		photo: '',
 	});
 	const [loader, setLoader] = useState(false);
 
 	const handleChange = ({ target: { name, value } }) => {
 		setState({ ...state, [name]: value });
+		console.log('state', state);
+	};
+
+	const handlePhotoChange = (file) => {
+		setState({ ...state, photo: file });
 		console.log('state', state);
 	};
 
@@ -28,6 +37,14 @@ const CreatePost = () => {
 			<NavBar />
 			<div className='create-post-container'>
 				<div className='form-wrapper'>
+					<FileUploader
+						className='img-handler'
+						handleChange={handlePhotoChange}
+						onDrop={handlePhotoChange}
+						name='photo'
+						types={fileTypes}
+						value={state.photo}
+					/>
 					<input
 						type='text'
 						name='title'
