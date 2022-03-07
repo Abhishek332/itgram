@@ -1,6 +1,17 @@
 @mixin flexCenter($justifyItem, $alignItem, $direction) {
-  display: flex;
-  align-items: $alignItem;
-  justify-content: $justifyItem;
-  flex-direction: $direction;
+	display: flex;
+	align-items: $alignItem;
+	justify-content: $justifyItem;
+	flex-direction: $direction;
+}
+
+@mixin loaderScreen {
+	width: 100vw;
+	height: 100vh;
+	background-color: $primary;
+	z-index: 1500;
+	position: absolute;
+	top: 0;
+	left: 0;
+	@include flexCenter(center, center, row);
 }

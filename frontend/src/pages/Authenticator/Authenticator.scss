@@ -47,6 +47,9 @@
 		}
 	}
 }
+.lock-loader {
+	@include loaderScreen;
+}
 
 @media (max-width: 768px) {
 	.authenticator-container {

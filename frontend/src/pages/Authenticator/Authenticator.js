@@ -1,5 +1,5 @@
 import './Authenticator.scss';
-import { WelCome } from '../../assets/images';
+import { WelCome, Lock } from '../../assets/images';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -85,6 +85,11 @@ const Authenticator = () => {
 					<img src={WelCome} alt='' />
 				</div>
 			</div>
+			{UserSignUpLoading && (
+				<div className='lock-loader'>
+					<img src={Lock} alt='' />
+				</div>
+			)}
 		</>
 	);
 };
