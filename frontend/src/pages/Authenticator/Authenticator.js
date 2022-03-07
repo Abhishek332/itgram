@@ -2,10 +2,12 @@ import "./Authenticator.scss";
 import { WelCome } from "../../assets/images";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { axios } from "../../api/axios";
+import { useDispatch } from "react-redux";
+import { userSignUp } from "../../redux/actions/authActions";
 
 const Authenticator = () => {
   const { search } = useLocation(),
+    dispatch = useDispatch(),
     [showSignUp, setShowSignUp] = useState(search.includes("signup")),
     [state, setState] = useState(
       showSignUp
@@ -24,11 +26,10 @@ const Authenticator = () => {
     setState({ ...state, [name]: value });
   };
 
+  console.log("Calling Component");
+
   const handleSubmit = () => {
-    axios
-      .post("/signup", state)
-      .then((res) => console.log(res.data.message))
-      .catch((err) => console.log(err.response.data.error));
+    dispatch(userSignUp(state));
   };
 
   return (
