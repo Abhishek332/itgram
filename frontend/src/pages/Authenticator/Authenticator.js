@@ -58,7 +58,7 @@ const Authenticator = () => {
   }, [UserLogInError]);
 
   useEffect(() => {
-    if (UserSignUpInfo || UserLogInInfo) navigate("/private-router");
+    if (UserSignUpInfo || UserLogInInfo) navigate("/homepage");
   }, [UserSignUpInfo, UserLogInInfo, navigate]);
 
   const handleChange = ({ target: { name, value } }) => {
