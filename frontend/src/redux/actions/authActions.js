@@ -9,6 +9,7 @@ export const userSignUp = (obj = { name: "", email: "", password: "" }) => {
       axios
         .post("/signup", obj)
         .then((res) => {
+          localStorage.setItem("userInfo", JSON.stringify(res.data));
           dispatch({ type: USER_SIGNUP.SUCCESS, payload: res.data });
         })
         .catch((err) => {
@@ -35,6 +36,7 @@ export const userLogIn = (obj = { email: "", password: "" }) => {
       axios
         .post("/signin", obj)
         .then((res) => {
+          localStorage.setItem("userInfo", JSON.stringify(res.data));
           dispatch({ type: USER_LOGIN.SUCCESS, payload: res.data });
         })
         .catch((err) => {

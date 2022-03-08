@@ -1,12 +1,15 @@
 import "./Authenticator.scss";
 import { WelCome, Lock } from "../../assets/images";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userSignUp, userLogIn } from "../../redux/actions/authActions";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Authenticator = () => {
   const { search } = useLocation(),
+    navigate = useNavigate(),
     dispatch = useDispatch(),
     {
       loading: UserSignUpLoading,
@@ -33,30 +36,35 @@ const Authenticator = () => {
     );
 
   useEffect(() => {
-    if (showSignUp) {
-      console.log("UserSignUpLoading", UserSignUpLoading);
-      console.log("UserSignUpInfo", UserSignUpInfo);
-      console.log("UserSignUpError", UserSignUpError);
-      return;
+    if (UserSignUpError) {
+      toast.error(UserSignUpError, {
+        position: "bottom-center",
+        autoClose: 2000,
+      });
+      if (UserSignUpError === "User already exists, please Login")
+        setShowSignUp(false);
     }
-    console.log("UserLogInLoading", UserLogInLoading);
-    console.log("UserLogInInfo", UserLogInInfo);
-    console.log("UserLogInError", UserLogInError);
-  }, [
-    UserSignUpLoading,
-    UserSignUpInfo,
-    UserSignUpError,
-    UserLogInLoading,
-    UserLogInInfo,
-    UserLogInError,
-    showSignUp,
-  ]);
+  }, [UserSignUpError]);
+
+  useEffect(() => {
+    if (UserLogInError) {
+      toast.error(UserLogInError, {
+        position: "bottom-center",
+        autoClose: 2000,
+      });
+      if (UserLogInError === "User doesn't exist, please SignUp")
+        setShowSignUp(true);
+    }
+  }, [UserLogInError]);
+
+  useEffect(() => {
+    if (UserSignUpInfo || UserLogInInfo) navigate("/private-router");
+  }, [UserSignUpInfo, UserLogInInfo, navigate]);
 
   const handleChange = ({ target: { name, value } }) => {
       setState({ ...state, [name]: value });
     },
     handleSubmit = () => {
-      console.log("state", state);
       showSignUp ? dispatch(userSignUp(state)) : dispatch(userLogIn(state));
     };
 
@@ -110,6 +118,7 @@ const Authenticator = () => {
           <img src={Lock} alt="" />
         </div>
       )}
+      <ToastContainer />
     </>
   );
 };
