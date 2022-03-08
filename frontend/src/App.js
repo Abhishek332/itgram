@@ -1,9 +1,4 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import {
   OnBoarding,
   Authenticator,
@@ -13,32 +8,15 @@ import {
 } from "./pages";
 
 const App = () => {
-  const isLoggedIn = localStorage.getItem("userInfo");
-
   return (
     <>
       <Router>
         <Routes>
           <Route path="/" element={<OnBoarding />} />
           <Route path="/authenticator" element={<Authenticator />} />
-          <Route
-            path="/profile"
-            element={
-              isLoggedIn ? <Profile /> : <Navigate to="/authenticator" />
-            }
-          />
-          <Route
-            path="/homepage"
-            element={
-              isLoggedIn ? <HomePage /> : <Navigate to="/authenticator" />
-            }
-          />
-          <Route
-            path="/create-post"
-            element={
-              isLoggedIn ? <CreatePost /> : <Navigate to="/authenticator" />
-            }
-          />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/homepage" element={<HomePage />} />
+          <Route path="/create-post" element={<CreatePost />} />
         </Routes>
       </Router>
     </>
