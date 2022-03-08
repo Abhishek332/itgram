@@ -61,7 +61,7 @@
     .auth-box {
       width: 95vw;
       height: 100vh;
-      flex-direction: column-reverse;
+      @include flexCenter(center, center, column-reverse);
       .form-box {
         width: 90%;
         margin-right: 0;
