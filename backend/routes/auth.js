@@ -18,13 +18,28 @@ AuthRouter.post("/signup", (req, res) => {
         return res
           .status(422)
           .json({ error: "User already exists with this email" });
-      bcrypt.hash(password, 12).then((hashedPassword) => {
-        const user = new User({ name, email, password: hashedPassword });
-        user
-          .save()
-          .then((user) => res.json({ message: "Registered Successfully" }))
-          .catch((err) => console.log(err));
-      });
+      bcrypt
+        .hash(password, 12)
+        .then((hashedPassword) => {
+          const user = new User({ name, email, password: hashedPassword });
+          user
+            .save()
+            .then(() => {
+              User.findOne({ email }).then((userFound) => {
+                const { _id, name, email } = userFound;
+                const token = JWT.sign({ _id: userFound._id }, JWT_SECRET);
+                return res.json({
+                  _id,
+                  name,
+                  email,
+                  message: "Registered Successfully",
+                  token,
+                });
+              });
+            })
+            .catch((err) => console.log(err));
+        })
+        .catch((err) => console.log(err));
     })
     .catch((err) => console.log(err));
 });
@@ -41,8 +56,12 @@ AuthRouter.post("/signin", (req, res) => {
         .compare(password, userFound.password)
         .then((doMatch) => {
           if (doMatch) {
+            const { _id, name, email } = userFound;
             const token = JWT.sign({ _id: userFound._id }, JWT_SECRET);
             return res.json({
+              _id,
+              name,
+              email,
               message: "Login Successful",
               token,
             });
