@@ -17,7 +17,7 @@ AuthRouter.post("/signup", (req, res) => {
       if (existUser)
         return res
           .status(422)
-          .json({ error: "User already exists with this email" });
+          .json({ error: "User already exists, please Login" });
       bcrypt
         .hash(password, 12)
         .then((hashedPassword) => {
@@ -47,11 +47,11 @@ AuthRouter.post("/signup", (req, res) => {
 AuthRouter.post("/signin", (req, res) => {
   const { email, password } = req.body;
   if (!email || !password)
-    return res.status(422).json({ error: "Please add email or password" });
+    return res.status(422).json({ error: "Please fill all the fields" });
   User.findOne({ email })
     .then((userFound) => {
       if (!userFound)
-        return res.status(422).json({ error: "Invalid email or password" });
+        return res.status(422).json({ error: "User doesn't exist, please SignUp" });
       bcrypt
         .compare(password, userFound.password)
         .then((doMatch) => {
