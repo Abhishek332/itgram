@@ -1,58 +1,58 @@
-@import '../../utils/sass/mixin.scss';
-@import '../../utils/sass/variables.scss';
+@import "../../utils/sass/mixin.scss";
+@import "../../utils/sass/variables.scss";
 
 .nav-wrapper {
-	width: 100%;
-	height: 80px;
-	box-shadow: 0 0 3px $secondary;
-	padding: 0 3%;
-	background-color: $secondary_1;
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 1000;
-	@include flexCenter(space-between, center, row);
-	.logo,
-	.avatar-icon {
-		height: 90%;
-		aspect-ratio: 1/1;
-		cursor: pointer;
-		position: relative;
-	}
-	img {
-		position: absolute;
-		width: 100%;
-	}
-	.avatar-icon {
-		height: 80%;
-		border-radius: 50%;
-		overflow: hidden;
-	}
-	.toggler {
-		position: absolute;
-		right: 0;
-		top: 80px;
-		width: 250px;
-		transition: 0.3s;
-		z-index: 100;
-		@include flexCenter(flex-start, center, column);
-		background-color: $secondary_1;
-		box-shadow: 0 0 3px $secondary;
-		.nav-link {
-			width: 100%;
-			padding: 15px;
-			border-bottom: 2px solid $primary;
-			color: $primary;
-			text-decoration: none;
-			font-weight: 600;
-			font-size: 16px;
-			text-align: center;
-		}
-	}
-}
-
-@media (max-width: 768px) {
-	.nav-wrapper {
-		height: 60px;
-	}
+  width: 100%;
+  height: 80px;
+  box-shadow: 0 0 3px $secondary;
+  padding: 0 3%;
+  background-color: $secondary_1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  @include flexCenter(space-between, center, row);
+  @media (max-width: 768px) {
+    height: 60px;
+  }
+  .logo,
+  .avatar-icon {
+    height: 90%;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+    position: relative;
+  }
+  img {
+    position: absolute;
+    width: 100%;
+  }
+  .avatar-icon {
+    height: 80%;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .toggler {
+    position: absolute;
+    right: 0;
+    top: 80px;
+    width: 250px;
+    transition: 0.3s;
+    z-index: 100;
+    @include flexCenter(flex-start, center, column);
+    background-color: $secondary_1;
+    box-shadow: 0 0 3px $secondary;
+    @media (max-width: 768px) {
+      top: 60px;
+    }
+    .nav-link {
+      width: 100%;
+      padding: 15px;
+      border-bottom: 2px solid $primary;
+      color: $primary;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      text-align: center;
+    }
+  }
 }

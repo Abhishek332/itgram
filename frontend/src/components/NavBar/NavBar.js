@@ -2,9 +2,15 @@ import "./NavBar.scss";
 import { Logo } from "../../assets/images";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
-  const [toggler, setToggler] = useState(false);
+  const navigate = useNavigate(),
+    [toggler, setToggler] = useState(false),
+    handleLogout = () => {
+      localStorage.clear();
+      navigate("/authenticator");
+    };
 
   return (
     <>
@@ -29,7 +35,9 @@ const NavBar = () => {
           <Link to="/profile" className="nav-link">
             Profile
           </Link>
-          <p className="nav-link">Logout</p>
+          <p className="nav-link" onClick={() => handleLogout()}>
+            Logout
+          </p>
         </div>
       </div>
     </>
