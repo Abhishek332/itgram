@@ -3,12 +3,17 @@ import { Logo } from "../../assets/images";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { USER_SIGNUP, USER_LOGIN } from "../../redux/constants/authConstants";
 
 const NavBar = () => {
   const navigate = useNavigate(),
+    dispatch = useDispatch(),
     [toggler, setToggler] = useState(false),
     handleLogout = () => {
       localStorage.clear();
+      dispatch({ type: USER_SIGNUP.NULL });
+      dispatch({ type: USER_LOGIN.NULL });
       navigate("/authenticator");
     };
 

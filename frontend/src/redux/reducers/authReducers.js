@@ -9,6 +9,8 @@ export const UserSignUpReducer = (state = IntialState.userSignUp, action) => {
       return { loading: false, userInfo: action.payload };
     case USER_SIGNUP.FAIL:
       return { loading: false, error: action.payload };
+    case USER_SIGNUP.NULL:
+      return { ...state, userInfo: null };
     default:
       return state;
   }
@@ -22,6 +24,8 @@ export const UserLogInReducer = (state = IntialState.userLogIn, action) => {
       return { loading: false, userInfo: action.payload };
     case USER_LOGIN.FAIL:
       return { loading: false, error: action.payload };
+    case USER_LOGIN.NULL:
+      return { ...state, userInfo: null };
     default:
       return state;
   }
