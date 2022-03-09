@@ -51,7 +51,9 @@ AuthRouter.post("/signin", (req, res) => {
   User.findOne({ email })
     .then((userFound) => {
       if (!userFound)
-        return res.status(422).json({ error: "User doesn't exist, please SignUp" });
+        return res
+          .status(422)
+          .json({ error: "User doesn't exist, please SignUp" });
       bcrypt
         .compare(password, userFound.password)
         .then((doMatch) => {
@@ -66,7 +68,7 @@ AuthRouter.post("/signin", (req, res) => {
               token,
             });
           }
-          res.status(422).json({ message: "Invalid email or password" });
+          res.status(422).json({ error: "Invalid email or password" });
         })
         .catch((err) => console.log(err));
     })
