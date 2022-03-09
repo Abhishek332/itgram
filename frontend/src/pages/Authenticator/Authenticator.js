@@ -58,7 +58,6 @@ const Authenticator = () => {
   }, [UserLogInError]);
 
   useEffect(() => {
-    console.log("userInfo", UserLogInInfo, UserSignUpInfo);
     if (UserSignUpInfo || UserLogInInfo) navigate("/homepage");
   }, [UserSignUpInfo, UserLogInInfo, navigate]);
 
