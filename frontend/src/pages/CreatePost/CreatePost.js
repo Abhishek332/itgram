@@ -4,6 +4,7 @@ import { Loader3 } from "../../assets/images";
 import { NavBar } from "../../components";
 import { FileUploader } from "react-drag-drop-files";
 import { useNavigate } from "react-router-dom";
+import { axios } from "../api/axios";
 
 const fileTypes = ["JPEG", "PNG", "GIF", "WEBP"];
 
@@ -26,7 +27,12 @@ const CreatePost = () => {
   };
 
   const handlePhotoChange = (file) => {
-    setState({ ...state, photo: file });
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "itgram");
+    data.append("cloud_name", "itgrampics");
+    axios.post("https://api.clouinary.com/v1_1/itgrampics/image/upload", data);
+
     console.log("state", state);
   };
 
