@@ -8,7 +8,9 @@ const Post = mongoose.model("Post");
 PostRouter.post("/create-post", requireLogin, (req, res) => {
   const { title, body } = req.body;
   if (!title || !body)
-    return res.status(422).json({ error: "Please all the fields" });
+    return res
+      .status(422)
+      .json({ error: "Please Enter post title and description." });
   req.user.password = undefined;
   const post = new Post({
     title,
