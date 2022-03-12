@@ -1,68 +1,67 @@
-@import '../../utils/sass/mixin.scss';
-@import '../../utils/sass/variables.scss';
+@import "../../utils/sass";
 
 .post-card-wrapper {
-	width: 100%;
-	box-shadow: 0 0 1px $secondary;
-	margin-bottom: 30px;
-	.header {
-		@include flexCenter(space-between, center, row);
-		padding: 15px;
-		h3 {
-			color: $primary;
-			font-weight: 600;
-		}
-		.follow-btn {
-			height: 25px;
-			padding: 0 20px;
-			border-radius: 4px;
-			font-size: 14px;
-			font-weight: 500;
-			color: $secondary_1;
-			background-color: $primary;
-			margin-left: 15px;
-		}
-	}
-	.post-img-wrapper {
-		@include flexCenter(center, center, row);
-		width: 100%;
-		aspect-ratio: 3/4;
-		overflow: hidden;
-		.post-img {
-			height: 100%;
-			width: auto;
-		}
-		.like-animation {
-			position: absolute;
-			z-index: 10;
-			width: 300px;
-		}
-	}
-	.footer {
-		padding: 15px;
-		.footer-top {
-			@include flexCenter(flex-start, center, row);
-			& > * {
-				margin-right: 5px;
-				font-size: 32px;
-				color: $primary;
-			}
-		}
-		p {
-			max-width: 95%;
-		}
-		.comment-box {
-			@include flexCenter(space-between, center, row);
-			textarea {
-				flex: 1;
-				font-size: 16px;
-				padding: 5px;
-				margin: 12px 0;
-			}
-			.comment-btn {
-				margin-left: 12px;
-				font-size: 27px;
-			}
-		}
-	}
+  width: 100%;
+  box-shadow: 0 0 1px $secondary;
+  margin-bottom: 30px;
+  .header {
+    @include flexCenter(space-between, center, row);
+    padding: 15px;
+    h3 {
+      color: $primary;
+      font-weight: 600;
+    }
+    .follow-btn {
+      height: 25px;
+      padding: 0 20px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      color: $secondary_1;
+      background-color: $primary;
+      margin-left: 15px;
+    }
+  }
+  .post-img-wrapper {
+    @include flexCenter(center, center, row);
+    width: 100%;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    .post-img {
+      height: 100%;
+      width: auto;
+    }
+    .like-animation {
+      position: absolute;
+      z-index: 10;
+      width: 300px;
+    }
+  }
+  .footer {
+    padding: 15px;
+    .footer-top {
+      @include flexCenter(flex-start, center, row);
+      & > * {
+        margin-right: 5px;
+        font-size: 32px;
+        color: $primary;
+      }
+    }
+    p {
+      max-width: 95%;
+    }
+    .comment-box {
+      @include flexCenter(space-between, center, row);
+      textarea {
+        flex: 1;
+        font-size: 16px;
+        padding: 5px;
+        margin: 12px 0;
+      }
+      .comment-btn {
+        margin-left: 12px;
+        font-size: 27px;
+      }
+    }
+  }
 }

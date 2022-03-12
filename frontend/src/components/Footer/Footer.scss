@@ -1,18 +1,17 @@
-@import '../../utils/sass/mixin.scss';
-@import '../../utils/sass/variables.scss';
+@import "../../utils/sass";
 
 .footer-wrapper {
-	position: fixed;
-	bottom: 0;
-	z-index: 10;
-	width: 100%;
-	box-shadow: 0 0 2px $secondary;
-	background-color: $secondary_1;
-	@include flexCenter(center, center, row);
-	.create-btn {
-		font-size: 30px;
-		color: $primary;
-		@include flexCenter(center, center, row);
-		margin: 7px;
-	}
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  width: 100%;
+  box-shadow: 0 0 2px $secondary;
+  background-color: $secondary_1;
+  @include flexCenter(center, center, row);
+  .create-btn {
+    font-size: 30px;
+    color: $primary;
+    @include flexCenter(center, center, row);
+    margin: 7px;
+  }
 }

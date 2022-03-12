@@ -1,5 +1,4 @@
-@import "../../utils/sass/variables.scss";
-@import "../../utils/sass/mixin.scss";
+@import "../../utils/sass";
 
 .create-post-container {
   width: 768px;
@@ -12,6 +11,7 @@
   transform: translate(-50%, -50%);
   @media (max-width: 768px) {
     width: 90%;
+    margin: 60px auto;
   }
   .form-wrapper {
     width: 100%;
@@ -40,21 +40,5 @@
       font-size: 18px;
       font-weight: 600;
     }
-  }
-  .loader {
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-    background-color: $secondary_1;
-    @include flexCenter(center, center, row);
-    img {
-      width: 400px;
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .create-post-container {
-    margin: 60px auto;
   }
 }

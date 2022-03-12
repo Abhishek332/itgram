@@ -1,5 +1,6 @@
 import "./Authenticator.scss";
 import { WelCome, Lock } from "../../assets/images";
+import { Loader } from "../../components";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -114,9 +115,7 @@ const Authenticator = () => {
         </div>
       </div>
       {(UserSignUpLoading || UserLogInLoading) && (
-        <div className="lock-loader">
-          <img src={Lock} alt="" />
-        </div>
+        <Loader Illustration={Lock} />
       )}
       <ToastContainer />
     </>

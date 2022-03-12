@@ -1,5 +1,4 @@
-@import "../../utils/sass/mixin.scss";
-@import "../../utils/sass/variables.scss";
+@import "../../utils/sass";
 
 .authenticator-container {
   height: 100vh;
@@ -44,14 +43,6 @@
     img {
       width: 50%;
       height: auto;
-    }
-  }
-}
-.lock-loader {
-  @include loaderScreen;
-  img {
-    @media (max-width: 768px) {
-      width: 50%;
     }
   }
 }

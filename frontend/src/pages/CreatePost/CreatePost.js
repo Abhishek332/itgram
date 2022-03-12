@@ -1,7 +1,7 @@
 import "./CreatePost.scss";
 import { useState, useEffect } from "react";
 import { Loader3 } from "../../assets/images";
-import { NavBar } from "../../components";
+import { NavBar, Loader } from "../../components";
 import { FileUploader } from "react-drag-drop-files";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -65,12 +65,8 @@ const CreatePost = () => {
             Post
           </button>
         </div>
-        {loader && (
-          <div className="loader">
-            <img src={Loader3} alt="" />
-          </div>
-        )}
       </div>
+      {loader && <Loader Illustration={Loader3} />}
     </>
   );
 };
