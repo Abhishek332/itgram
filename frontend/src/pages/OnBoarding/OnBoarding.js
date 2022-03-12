@@ -1,8 +1,15 @@
 import "./OnBoarding.scss";
 import { WelCome } from "../../assets/images";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const OnBoarding = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem("userInfo")) navigate("/homepage");
+  }, []);
+
   return (
     <>
       <div className="onboarding-container">
