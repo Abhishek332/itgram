@@ -4,18 +4,21 @@ import { Loader3 } from "../../assets/images";
 import { NavBar } from "../../components";
 import { FileUploader } from "react-drag-drop-files";
 import { useNavigate } from "react-router-dom";
-import { axios } from "../api/axios";
+import { useDispatch, useSelector } from "react-redux";
+import { imageUploader } from "../../redux/actions/postActions";
 
 const fileTypes = ["JPEG", "PNG", "GIF", "WEBP"];
 
 const CreatePost = () => {
   const navigate = useNavigate(),
+    dispatch = useDispatch(),
     [state, setState] = useState({
       title: "",
       body: "",
-      photo: "",
+      photo: useSelector((state) => state.imageUrl),
     }),
-    [loader, setLoader] = useState(false);
+    [loader, setLoader] = useState(false),
+    { title, body } = state;
 
   useEffect(() => {
     if (!localStorage.getItem("userInfo")) navigate("/authenticator");
@@ -23,17 +26,6 @@ const CreatePost = () => {
 
   const handleChange = ({ target: { name, value } }) => {
     setState({ ...state, [name]: value });
-    console.log("state", state);
-  };
-
-  const handlePhotoChange = (file) => {
-    const data = new FormData();
-    data.append("file", file);
-    data.append("upload_preset", "itgram");
-    data.append("cloud_name", "itgrampics");
-    axios.post("https://api.clouinary.com/v1_1/itgrampics/image/upload", data);
-
-    console.log("state", state);
   };
 
   const handleSubmit = () => {
@@ -51,23 +43,22 @@ const CreatePost = () => {
         <div className="form-wrapper">
           <FileUploader
             className="img-handler"
-            handleChange={handlePhotoChange}
-            onDrop={handlePhotoChange}
+            handleChange={(file) => dispatch(imageUploader(file))}
+            onDrop={(file) => dispatch(imageUploader(file))}
             name="photo"
             types={fileTypes}
-            value={state.photo}
           />
           <input
             type="text"
             name="title"
             placeholder="Title"
-            value={state.title}
+            value={title}
             onChange={handleChange}
           />
           <textarea
             name="body"
             placeholder="Enter post description"
-            value={state.body}
+            value={body}
             onChange={handleChange}
           />
           <button className="post-btn" onClick={handleSubmit}>
