@@ -9,5 +9,13 @@ export const IntialState = {
     userInfo: null,
     error: null,
   },
-  imageUrl: null,
+  imageUpload: {
+    imageUploading: false,
+    imageUrl: null,
+  },
+  craetePost: {
+    loading: false,
+    success: null,
+    error: null,
+  },
 };
