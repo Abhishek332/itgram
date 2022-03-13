@@ -10,7 +10,7 @@ PostRouter.post("/create-post", requireLogin, (req, res) => {
   if (!title || !body)
     return res
       .status(422)
-      .json({ error: "Please Enter post title and description." });
+      .json({ error: "Please enter post title and description." });
   req.user.password = undefined;
   const post = new Post({
     title,
@@ -19,7 +19,9 @@ PostRouter.post("/create-post", requireLogin, (req, res) => {
   });
   post
     .save()
-    .then((result) => res.json({ post: result }))
+    .then((result) =>
+      res.json({ message: "Posted Successfully", post: result })
+    )
     .catch((err) => console.log(err));
 });
 
