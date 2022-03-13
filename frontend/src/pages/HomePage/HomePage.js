@@ -21,8 +21,8 @@ const HomePage = () => {
     <>
       <NavBar />
       <div className="home-page-container">
-        {data.map((Post) => (
-          <PostCard />
+        {data.map((Post, index) => (
+          <PostCard key={`post-${index}`} />
         ))}
       </div>
       <Footer />
