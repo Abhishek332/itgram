@@ -5,13 +5,14 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userSignUp, userLogIn } from "../../redux/actions/authActions";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useToaster, ToastBox } from "../../utils/toaster";
+import { USER_LOGIN, USER_SIGNUP } from "../../redux/constants/authConstants";
 
 const Authenticator = () => {
   const { search } = useLocation(),
     navigate = useNavigate(),
     dispatch = useDispatch(),
+    toaster = useToaster(),
     {
       loading: UserSignUpLoading,
       userInfo: UserSignUpInfo,
@@ -38,25 +39,23 @@ const Authenticator = () => {
 
   useEffect(() => {
     if (UserSignUpError) {
-      toast.error(UserSignUpError, {
-        position: "bottom-center",
-        autoClose: 2000,
-      });
+      if(!UserSignUpError) return;
+      toaster("error", UserSignUpError);
+      dispatch({ type: USER_SIGNUP.NULL });
       if (UserSignUpError === "User already exists, please Login")
         setShowSignUp(false);
     }
-  }, [UserSignUpError]);
+  }, [UserSignUpError, dispatch, toaster]);
 
   useEffect(() => {
     if (UserLogInError) {
-      toast.error(UserLogInError, {
-        position: "bottom-center",
-        autoClose: 2000,
-      });
+      if (!UserLogInError) return;
+      toaster("error", UserLogInError);
+      dispatch({ type: USER_LOGIN.NULL });
       if (UserLogInError === "User doesn't exist, please SignUp")
         setShowSignUp(true);
     }
-  }, [UserLogInError]);
+  }, [UserLogInError, dispatch, toaster]);
 
   useEffect(() => {
     if (UserSignUpInfo || UserLogInInfo) navigate("/homepage");
@@ -117,7 +116,7 @@ const Authenticator = () => {
       {(UserSignUpLoading || UserLogInLoading) && (
         <Loader Illustration={Lock} />
       )}
-      <ToastContainer />
+      <ToastBox />
     </>
   );
 };
