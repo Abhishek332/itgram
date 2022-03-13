@@ -1,8 +1,18 @@
 import Axios from "axios";
 
-export const axios = Axios.create({
-  // baseURL: "http://localhost:5000/",
-  header: {
+const userInfo = localStorage.getItem("userInfo") || null;
+
+let Header = {
+  "Content-Type": "application/json",
+};
+if (userInfo) {
+  Header = {
     "Content-Type": "application/json",
-  },
+    Authorization: JSON.parse(userInfo).token,
+  };
+}
+console.log("Header", Header);
+
+export const axios = Axios.create({
+  headers: Header,
 });
