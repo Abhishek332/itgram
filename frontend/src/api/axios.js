@@ -11,7 +11,6 @@ if (userInfo) {
     Authorization: JSON.parse(userInfo).token,
   };
 }
-console.log("Header", Header);
 
 export const axios = Axios.create({
   headers: Header,
