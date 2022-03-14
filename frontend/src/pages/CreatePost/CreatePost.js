@@ -5,7 +5,7 @@ import { NavBar, Loader } from "../../components";
 import { FileUploader } from "react-drag-drop-files";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createPost, imageUploader } from "../../redux/actions/postActions";
+import { createPostCall, imageUploader } from "../../redux/actions/postActions";
 import { useToaster, ToastBox } from "../../utils/toaster";
 import { CREATE_POST, IMAGE_UPLOAD } from "../../redux/constants/postConstants";
 
@@ -45,7 +45,7 @@ const CreatePost = () => {
   };
 
   const handleSubmit = () => {
-    dispatch(createPost({ ...state, photo: imageUrl }));
+    dispatch(createPostCall({ ...state, photo: imageUrl }));
   };
 
   return (
