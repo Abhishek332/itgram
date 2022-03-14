@@ -1,5 +1,5 @@
 import "./CreatePost.scss";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Loader2, Loader3 } from "../../assets/images";
 import { NavBar, Loader } from "../../components";
 import { FileUploader } from "react-drag-drop-files";
@@ -31,6 +31,7 @@ const CreatePost = () => {
     if (!success) return;
     toaster("success", success.message);
     dispatch({ type: CREATE_POST.NULL });
+    dispatch({ type: IMAGE_UPLOAD.NULL });
   }, [dispatch, success, toaster]);
 
   useEffect(() => {
@@ -45,7 +46,6 @@ const CreatePost = () => {
 
   const handleSubmit = () => {
     dispatch(createPost({ ...state, photo: imageUrl }));
-    dispatch({ type: IMAGE_UPLOAD.NULL });
   };
 
   return (

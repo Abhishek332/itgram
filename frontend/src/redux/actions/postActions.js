@@ -4,8 +4,8 @@ import { IMAGE_UPLOAD, CREATE_POST } from "../constants/postConstants";
 
 export const imageUploader = (file) => {
   return async (dispatch) => {
+    dispatch({ type: IMAGE_UPLOAD.REQUEST });
     try {
-      dispatch({ type: IMAGE_UPLOAD.REQUEST });
       const data = new FormData();
       data.append("file", file);
       data.append("upload_preset", "itgram");
@@ -26,17 +26,19 @@ export const imageUploader = (file) => {
 
 export const createPost = (obj = { title: "", body: "", photo: "" }) => {
   return async (dispatch) => {
+    dispatch({ type: CREATE_POST.REQUEST });
     try {
-      dispatch({ type: CREATE_POST.REQUEST });
       axios
         .post("/create-post", obj)
         .then((res) => {
-          console.log(res);
           dispatch({ type: CREATE_POST.SUCCESS, payload: res.data });
         })
-        .catch((err) =>
-          dispatch({ type: CREATE_POST.FAIL, payload: err.response.data.error })
-        );
+        .catch((err) => {
+          dispatch({
+            type: CREATE_POST.FAIL,
+            payload: err.response.data.error,
+          });
+        });
     } catch (error) {
       console.error(error);
       dispatch({ type: CREATE_POST.FAIL, payload: "Something went wrong." });
