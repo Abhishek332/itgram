@@ -1,6 +1,11 @@
 import { axios } from "../../api/axios";
 import Axios from "axios";
-import { IMAGE_UPLOAD, CREATE_POST } from "../constants/postConstants";
+import {
+  IMAGE_UPLOAD,
+  CREATE_POST,
+  ALL_POST,
+  MY_POST,
+} from "../constants/postConstants";
 
 export const imageUploader = (file) => {
   return async (dispatch) => {
@@ -24,7 +29,7 @@ export const imageUploader = (file) => {
   };
 };
 
-export const createPost = (obj = { title: "", body: "", photo: "" }) => {
+export const createPostCall = (obj = { title: "", body: "", photo: "" }) => {
   return async (dispatch) => {
     dispatch({ type: CREATE_POST.REQUEST });
     try {
@@ -42,6 +47,32 @@ export const createPost = (obj = { title: "", body: "", photo: "" }) => {
     } catch (error) {
       console.error(error);
       dispatch({ type: CREATE_POST.FAIL, payload: "Something went wrong." });
+    }
+  };
+};
+
+export const allPostCall = () => {
+  return async (dispatch) => {
+    dispatch({ type: ALL_POST.REQUEST });
+    try {
+      axios
+        .get("/allpost")
+        .then((res) =>
+          dispatch({ type: ALL_POST.SUCCESS, payload: res.data.posts })
+        );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const myPostCall = () => {
+  return async (dispatch) => {
+    dispatch({ type: MY_POST.REQUEST });
+    try {
+      axios.get("/mypost").then((res) => console.log("data", res));
+    } catch (error) {
+      console.log(error);
     }
   };
 };

@@ -18,4 +18,12 @@ export const IntialState = {
     success: null,
     error: null,
   },
+  allPost: {
+    loading: false,
+    allpost: null,
+  },
+  myPost: {
+    loading: false,
+    mypost: null
+  },
 };
