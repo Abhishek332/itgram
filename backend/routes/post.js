@@ -6,7 +6,7 @@ export const PostRouter = express.Router();
 const Post = mongoose.model("Post");
 
 PostRouter.post("/create-post", requireLogin, (req, res) => {
-  const { title, body } = req.body;
+  const { title, body, photo } = req.body;
   if (!title || !body)
     return res
       .status(422)
@@ -15,6 +15,7 @@ PostRouter.post("/create-post", requireLogin, (req, res) => {
   const post = new Post({
     title,
     body,
+    photo,
     postedBy: req.user,
   });
   post
