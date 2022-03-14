@@ -27,7 +27,7 @@ AuthRouter.post("/signup", (req, res) => {
             .then(() => {
               User.findOne({ email }).then((userFound) => {
                 const { _id, name, email } = userFound;
-                const token = JWT.sign({ _id: userFound._id }, JWT_SECRET);
+                const token = JWT.sign({ _id }, JWT_SECRET);
                 return res.json({
                   _id,
                   name,
@@ -59,7 +59,7 @@ AuthRouter.post("/signin", (req, res) => {
         .then((doMatch) => {
           if (doMatch) {
             const { _id, name, email } = userFound;
-            const token = JWT.sign({ _id: userFound._id }, JWT_SECRET);
+            const token = JWT.sign({ _id }, JWT_SECRET);
             return res.json({
               _id,
               name,
