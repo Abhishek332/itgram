@@ -26,7 +26,7 @@ PostRouter.post("/create-post", requireLogin, (req, res) => {
     .catch((err) => console.log(err));
 });
 
-PostRouter.get("/allpost", (req, res) => {
+PostRouter.get("/allpost", requireLogin, (req, res) => {
   Post.find()
     .populate("postedBy", "_id name")
     .then((posts) => res.json({ posts }))
