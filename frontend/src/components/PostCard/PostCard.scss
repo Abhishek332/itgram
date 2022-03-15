@@ -25,7 +25,6 @@
   .post-img-wrapper {
     @include flexCenter(center, center, row);
     width: 100%;
-    aspect-ratio: 3/4;
     overflow: hidden;
     .post-img {
       height: 100%;
@@ -41,6 +40,7 @@
     padding: 15px;
     .footer-top {
       @include flexCenter(flex-start, center, row);
+      margin-top: 10px;
       & > * {
         margin-right: 5px;
         font-size: 32px;
