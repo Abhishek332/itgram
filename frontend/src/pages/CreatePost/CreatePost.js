@@ -1,5 +1,5 @@
 import "./CreatePost.scss";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { Loader2, Loader3 } from "../../assets/images";
 import { NavBar, Loader } from "../../components";
 import { FileUploader } from "react-drag-drop-files";
