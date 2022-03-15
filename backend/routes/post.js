@@ -39,3 +39,33 @@ PostRouter.get("/mypost", requireLogin, (req, res) => {
     .then((mypost) => res.json({ mypost }))
     .catch((err) => console.log(err));
 });
+
+PostRouter.put("/like", requireLogin, (req, res) => {
+  Post.findByIdAndUpdate(
+    req.body.postId,
+    () => {
+      $push: {
+        like: req.user._id;
+      }
+    },
+    { new: true }
+  ).exec((err, result) => {
+    if (error) return res.status(422).json({ error });
+    res.json({ result });
+  });
+});
+
+PostRouter.put("/unlike", requireLogin, (req, res) => {
+  Post.findByIdAndUpdate(
+    req.body.postId,
+    () => {
+      $pull: {
+        like: req.user._id;
+      }
+    },
+    { new: true }
+  ).exec((err, result) => {
+    if (error) return res.status(422).json({ error });
+    res.json({ result });
+  });
+});
