@@ -69,3 +69,24 @@ PostRouter.put("/unlike", requireLogin, (req, res) => {
     res.json({ result });
   });
 });
+
+PostRouter.put("/comment", requireLogin, (req, res) => {
+  const comment = {
+    text: req.body.text,
+    postedBy: req.user._id,
+  };
+  Post.findByIdAndUpdate(
+    req.body.postId,
+    () => {
+      $push: {
+        comments: comment;
+      }
+    },
+    { new: true }
+  )
+    .populate("comments.postedBy", "_id name")
+    .exec((err, result) => {
+      if (error) return res.status(422).json({ error });
+      res.json({ result });
+    });
+});
