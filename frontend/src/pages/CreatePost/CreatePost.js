@@ -9,7 +9,7 @@ import { createPostCall, imageUploader } from "../../redux/actions/postActions";
 import { useToaster, ToastBox } from "../../utils/toaster";
 import { CREATE_POST, IMAGE_UPLOAD } from "../../redux/constants/postConstants";
 
-const fileTypes = ["JPEG", "PNG", "GIF", "WEBP"];
+const fileTypes = ["JPEG", "PNG", "GIF", "WEBP", "JPG"];
 
 const CreatePost = () => {
   const navigate = useNavigate(),
@@ -29,10 +29,10 @@ const CreatePost = () => {
 
   useEffect(() => {
     if (!success) return;
-    toaster("success", success.message);
     dispatch({ type: CREATE_POST.NULL });
     dispatch({ type: IMAGE_UPLOAD.NULL });
-  }, [dispatch, success, toaster]);
+    navigate("/homepage");
+  }, [dispatch, navigate, success, toaster]);
 
   useEffect(() => {
     if (!error) return;
