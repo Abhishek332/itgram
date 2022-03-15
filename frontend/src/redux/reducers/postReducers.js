@@ -40,7 +40,7 @@ export const CreatePostReducer = (state = IntialState.craetePost, action) => {
 export const AllPostReducer = (state = IntialState.allPost, action) => {
   switch (action.type) {
     case ALL_POST.REQUEST:
-      return { loading: true, sucess: null };
+      return { loading: true, allpost: null };
     case ALL_POST.SUCCESS:
       return { loading: false, allpost: action.payload };
     default:
@@ -51,9 +51,9 @@ export const AllPostReducer = (state = IntialState.allPost, action) => {
 export const MyPostReducer = (state = IntialState.myPost, action) => {
   switch (action.type) {
     case MY_POST.REQUEST:
-      return { loading: true, sucess: null };
+      return { loading: true, mypost: null };
     case MY_POST.SUCCESS:
-      return { loading: false, success: action.payload };
+      return { loading: false, mypost: action.payload };
     default:
       return state;
   }
