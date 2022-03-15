@@ -27,8 +27,8 @@
     width: 100%;
     overflow: hidden;
     .post-img {
-      height: 100%;
-      width: auto;
+      width: 100%;
+      height: auto;
     }
     .like-animation {
       position: absolute;
@@ -49,6 +49,9 @@
     }
     p {
       max-width: 95%;
+      @media (max-width: 450px) {
+        font-size: 15px;
+      }
     }
     .comment-box {
       @include flexCenter(space-between, center, row);
