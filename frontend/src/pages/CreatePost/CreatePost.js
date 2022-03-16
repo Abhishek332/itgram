@@ -5,9 +5,9 @@ import { NavBar, Loader } from "../../components";
 import { FileUploader } from "react-drag-drop-files";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createPostCall, imageUploader } from "../../redux/actions/postActions";
+import { createPostCall, imageUploader } from "../../redux/create_post/action";
 import { useToaster, ToastBox } from "../../utils/toaster";
-import { CREATE_POST, IMAGE_UPLOAD } from "../../redux/constants/postConstants";
+import { CREATE_POST, IMAGE_UPLOAD } from "../../redux/create_post/constant";
 
 const fileTypes = ["JPEG", "PNG", "GIF", "WEBP", "JPG"];
 

@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { USER_SIGNUP, USER_LOGIN } from "../../redux/constants/authConstants";
+import { USER_LOGIN } from "../../redux/login/constant";
+import { USER_SIGNUP } from "../../redux/signup/constant";
 
 const NavBar = () => {
   const navigate = useNavigate(),

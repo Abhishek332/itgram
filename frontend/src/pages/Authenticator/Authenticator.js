@@ -4,9 +4,11 @@ import { Loader } from "../../components";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { userSignUp, userLogIn } from "../../redux/actions/authActions";
 import { useToaster, ToastBox } from "../../utils/toaster";
-import { USER_LOGIN, USER_SIGNUP } from "../../redux/constants/authConstants";
+import { USER_LOGIN } from "../../redux/login/constant";
+import { USER_SIGNUP } from "../../redux/signup/constant";
+import { userSignUp } from "../../redux/signup/action";
+import { userLogIn } from "../../redux/login/action";
 
 const Authenticator = () => {
   const { search } = useLocation(),
@@ -24,22 +26,15 @@ const Authenticator = () => {
       error: UserLogInError,
     } = useSelector((state) => state.userLogIn),
     [showSignUp, setShowSignUp] = useState(search.includes("signup")),
-    [state, setState] = useState(
-      showSignUp
-        ? {
-            name: "",
-            email: "",
-            password: "",
-          }
-        : {
-            email: "",
-            password: "",
-          }
-    );
+    [state, setState] = useState({
+      name: "",
+      email: "",
+      password: "",
+    });
 
   useEffect(() => {
     if (UserSignUpError) {
-      if(!UserSignUpError) return;
+      if (!UserSignUpError) return;
       toaster("error", UserSignUpError);
       dispatch({ type: USER_SIGNUP.NULL });
       if (UserSignUpError === "User already exists, please Login")

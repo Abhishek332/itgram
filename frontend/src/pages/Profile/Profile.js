@@ -2,7 +2,7 @@ import "./Profile.scss";
 import { NavBar, Loader } from "../../components";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { myPostCall } from "../../redux/actions/postActions";
+import { myPostCall } from "../../redux/profile/action";
 import { useDispatch, useSelector } from "react-redux";
 import { Loader2 } from "../../assets/images";
 

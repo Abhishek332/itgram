@@ -10,13 +10,3 @@ export const CREATE_POST = {
   FAIL: "CREATE_POST_FAIL",
   NULL: "CREATE_POST_NULL",
 };
-
-export const ALL_POST = {
-  REQUEST: "ALL_POST_REQUEST",
-  SUCCESS: "ALL_POST_SUCCESS",
-};
-
-export const MY_POST = {
-  REQUEST: "MY_POST_REQUEST",
-  SUCCESS: "MY_POST_SUCCESS",
-};

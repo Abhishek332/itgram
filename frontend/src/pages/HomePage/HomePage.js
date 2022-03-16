@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { NavBar, PostCard, Footer, Loader } from "../../components";
 import "./HomePage.scss";
-import { allPostCall } from "../../redux/actions/postActions";
+import { allPostCall } from "../../redux/homepage/action";
 import { useDispatch, useSelector } from "react-redux";
 import { Loader2 } from "../../assets/images";
 
