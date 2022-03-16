@@ -29,14 +29,14 @@ PostRouter.post("/create-post", requireLogin, (req, res) => {
 PostRouter.get("/allpost", requireLogin, (req, res) => {
   Post.find()
     .populate("postedBy", "_id name")
-    .then((posts) => res.json({ posts }))
+    .then((posts) => res.json({ posts: posts.reverse() }))
     .catch((err) => console.log(err));
 });
 
 PostRouter.get("/mypost", requireLogin, (req, res) => {
   Post.find({ postedBy: req.user._id })
     .populate("postedBy", "_id name")
-    .then((mypost) => res.json({ mypost }))
+    .then((mypost) => res.json({ mypost: mypost.reverse() }))
     .catch((err) => console.log(err));
 });
 
