@@ -11,7 +11,9 @@ import { userSignUp } from "../../redux/signup/action";
 import { userLogIn } from "../../redux/login/action";
 
 const Authenticator = () => {
-  const { search } = useLocation(),
+  const {
+      state: { source },
+    } = useLocation(),
     navigate = useNavigate(),
     dispatch = useDispatch(),
     toaster = useToaster(),
@@ -25,7 +27,7 @@ const Authenticator = () => {
       userInfo: UserLogInInfo,
       error: UserLogInError,
     } = useSelector((state) => state.userLogIn),
-    [showSignUp, setShowSignUp] = useState(search.includes("signup")),
+    [showSignUp, setShowSignUp] = useState(source === "signup"),
     [state, setState] = useState({
       name: "",
       email: "",
