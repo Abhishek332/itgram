@@ -12,7 +12,7 @@ const Profile = () => {
     { loading, mypost } = useSelector((state) => state.myPost);
 
   useEffect(() => {
-    if (!localStorage.getItem("userInfo")) navigate("/authenticator");
+    if (!localStorage.getItem("userInfo")) navigate("/");
   }, [navigate]);
 
   useEffect(() => {

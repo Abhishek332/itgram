@@ -24,7 +24,7 @@ const CreatePost = () => {
     { imageUploading, imageUrl } = useSelector((state) => state.imageUpload);
 
   useEffect(() => {
-    if (!localStorage.getItem("userInfo")) navigate("/authenticator");
+    if (!localStorage.getItem("userInfo")) navigate("/");
   }, [navigate]);
 
   useEffect(() => {

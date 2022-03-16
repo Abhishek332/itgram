@@ -8,7 +8,7 @@ const OnBoarding = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (localStorage.getItem("userInfo")) navigate("/homepage");
-  }, []);
+  }, [navigate]);
 
   return (
     <>

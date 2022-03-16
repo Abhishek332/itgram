@@ -15,7 +15,7 @@ const NavBar = () => {
       localStorage.clear();
       dispatch({ type: USER_SIGNUP.NULL });
       dispatch({ type: USER_LOGIN.NULL });
-      navigate("/authenticator");
+      navigate("/");
     };
 
   return (
