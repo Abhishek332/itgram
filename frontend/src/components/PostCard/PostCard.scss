@@ -53,7 +53,7 @@
         font-size: 15px;
       }
     }
-    .comment-box {
+    .comment-input {
       @include flexCenter(space-between, center, row);
       textarea {
         flex: 1;

@@ -4,9 +4,11 @@ import { FiSend } from "react-icons/fi";
 import { useState } from "react";
 import { Like } from "../../assets/images";
 import { axios } from "../../api/axios";
+import { useNavigate } from "react-router-dom";
 
 const PostCard = ({ title, body, photo, postedBy, _id, likes, comments }) => {
-  const userId = JSON.parse(localStorage.getItem("userInfo"))._id,
+  const navigate = useNavigate(),
+    userId = JSON.parse(localStorage.getItem("userInfo"))._id,
     [liked, setLiked] = useState(likes.includes(userId)),
     [likeAnimation, setLikeAnimation] = useState(false),
     [textArea, setTextArea] = useState();
@@ -26,7 +28,7 @@ const PostCard = ({ title, body, photo, postedBy, _id, likes, comments }) => {
     },
     handleComment = () => {
       axios
-        .put("/comment", { postId: _id, text: textArea })
+        .put("/add-comment", { postId: _id, text: textArea })
         .then((res) => console.log(res.data))
         .catch((err) => console.log(err));
     };
@@ -55,10 +57,10 @@ const PostCard = ({ title, body, photo, postedBy, _id, likes, comments }) => {
           ) : (
             <AiOutlineHeart onClick={() => handleLike_UnLike("like")} />
           )}
-          <AiOutlineComment />
+          <AiOutlineComment onClick={() => navigate(`/comments/${_id}`)} />
         </div>
         <span>{`${likes.length} likes | ${comments.length} comments`}</span>
-        <div className="comment-box">
+        <div className="comment-input">
           <textarea
             placeholder="comment here ..."
             value={textArea}
