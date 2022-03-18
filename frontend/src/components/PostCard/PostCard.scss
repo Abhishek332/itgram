@@ -2,7 +2,7 @@
 
 .post-card-wrapper {
   width: 100%;
-  box-shadow: 0 0 1px $secondary;
+  box-shadow: 0 0 2px $secondary;
   margin-bottom: 30px;
   .header {
     @include flexCenter(space-between, center, row);
