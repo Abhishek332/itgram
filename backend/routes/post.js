@@ -43,13 +43,13 @@ PostRouter.get("/mypost", requireLogin, (req, res) => {
 PostRouter.put("/like", requireLogin, (req, res) => {
   Post.findByIdAndUpdate(
     req.body.postId,
-    () => {
-      $push: {
-        like: req.user._id;
-      }
+    {
+      $addToSet: {
+        likes: req.user._id,
+      },
     },
     { new: true }
-  ).exec((err, result) => {
+  ).exec((error, result) => {
     if (error) return res.status(422).json({ error });
     res.json({ result });
   });
@@ -58,13 +58,13 @@ PostRouter.put("/like", requireLogin, (req, res) => {
 PostRouter.put("/unlike", requireLogin, (req, res) => {
   Post.findByIdAndUpdate(
     req.body.postId,
-    () => {
+    {
       $pull: {
-        like: req.user._id;
-      }
+        likes: req.user._id,
+      },
     },
     { new: true }
-  ).exec((err, result) => {
+  ).exec((error, result) => {
     if (error) return res.status(422).json({ error });
     res.json({ result });
   });
@@ -77,15 +77,35 @@ PostRouter.put("/comment", requireLogin, (req, res) => {
   };
   Post.findByIdAndUpdate(
     req.body.postId,
-    () => {
+    {
       $push: {
-        comments: comment;
-      }
+        comments: comment,
+      },
     },
     { new: true }
   )
     .populate("comments.postedBy", "_id name")
-    .exec((err, result) => {
+    .exec((error, result) => {
+      if (error) return res.status(422).json({ error });
+      res.json({ result });
+    });
+});
+
+PostRouter.put("/delete-comment", requireLogin, (req, res) => {
+  Post.findByIdAndUpdate(
+    req.body.postId,
+    {
+      $pull: {
+        comments: {
+          text: req.body.text,
+          postedBy: req.user._id,
+        },
+      },
+    },
+    { new: true }
+  )
+    .populate("comments.postedBy", "_id name")
+    .exec((error, result) => {
       if (error) return res.status(422).json({ error });
       res.json({ result });
     });
