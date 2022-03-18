@@ -4,3 +4,14 @@
   justify-content: $justifyItem;
   flex-direction: $direction;
 }
+
+@mixin pageWrapper {
+  max-width: 540px;
+  min-width: 360px;
+  margin: 80px auto;
+  padding: 20px 0;
+  @media (max-width: 768px) {
+    width: 100%;
+    margin: 60px auto;
+  }
+}
