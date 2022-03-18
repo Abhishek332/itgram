@@ -7,12 +7,17 @@ import {
 import { FiSend } from "react-icons/fi";
 import { useState } from "react";
 import { Like } from "../../assets/images";
+import { axios } from "../../api/axios";
 
 const PostCard = ({ title, body, photo, postedBy, _id }) => {
   const [likeAnimation, setLikeAnimation] = useState(false);
 
-  const handleLikeAnimation = () => {
+  const handleLike = () => {
     setLikeAnimation(true);
+    axios
+      .put("/like", { postId: _id })
+      .then((res) => console.log("result", res.data.result))
+      .catch((err) => console.log("error", err));
     setTimeout(() => {
       setLikeAnimation(false);
     }, 1000);
@@ -29,7 +34,7 @@ const PostCard = ({ title, body, photo, postedBy, _id }) => {
           className="post-img"
           src={photo}
           alt=""
-          onDoubleClick={() => handleLikeAnimation()}
+          onDoubleClick={() => handleLike()}
         />
         {likeAnimation && <img src={Like} alt="" className="like-animation" />}
       </div>
