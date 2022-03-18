@@ -1,0 +1,38 @@
+@import "../../utils/sass/";
+
+.comment-page-container {
+  @include pageWrapper;
+}
+
+.comment-box {
+  & > div {
+    margin: 5px 0;
+    &:last-child {
+      @include flexCenter(space-between, center, row);
+    }
+  }
+  margin: 20px 0;
+  padding: 15px;
+  .name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-right: 20px;
+    color: $primary;
+  }
+  .follow-btn {
+    height: 24px;
+    padding: 0 18px;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 600;
+    color: $secondary_1;
+    background-color: $primary;
+  }
+  .delete-btn {
+    cursor: pointer;
+    font-size: 20px;
+  }
+  .comment {
+    font-size: 16px;
+  }
+}

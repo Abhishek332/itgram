@@ -5,6 +5,7 @@ import {
   Profile,
   HomePage,
   CreatePost,
+  Comments,
 } from "./pages";
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/homepage" element={<HomePage />} />
           <Route path="/create-post" element={<CreatePost />} />
+          <Route path="/comments/:postId" element={<Comments />} />
         </Routes>
       </Router>
     </>
