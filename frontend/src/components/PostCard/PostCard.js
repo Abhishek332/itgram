@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Like } from "../../assets/images";
 import { axios } from "../../api/axios";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const PostCard = ({ title, body, photo, postedBy, _id, likes, comments }) => {
   const navigate = useNavigate(),
@@ -57,20 +58,39 @@ const PostCard = ({ title, body, photo, postedBy, _id, likes, comments }) => {
         <p>{body}</p>
         <div className="footer-top">
           {liked ? (
-            <AiFillHeart onClick={() => handleLike_UnLike("unlike")} />
+            <AiFillHeart
+              onClick={() => handleLike_UnLike("unlike")}
+              style={{ cursor: "pointer" }}
+            />
           ) : (
-            <AiOutlineHeart onClick={() => handleLike_UnLike("like")} />
+            <AiOutlineHeart
+              onClick={() => handleLike_UnLike("like")}
+              style={{ cursor: "pointer" }}
+            />
           )}
-          <AiOutlineComment onClick={() => navigate(`/comments/${_id}`)} />
+          <AiOutlineComment
+            onClick={() => navigate(`/comments/${_id}`)}
+            style={{ cursor: "pointer" }}
+          />
         </div>
-        <span>{`${likesData.length} likes | ${comments.length} comments`}</span>
+        <Link to="/likes" className="span">
+          <span>{`${likesData.length} likes`}</span>
+        </Link>
+        <span>{" | "}</span>
+        <Link to={`/comments/${_id}`} className="span">
+          <span>{`${comments.length} comments`}</span>
+        </Link>
         <div className="comment-input">
           <textarea
             placeholder="comment here ..."
             value={textArea}
             onChange={(e) => setTextArea(e.target.value)}
           ></textarea>
-          <FiSend className="comment-btn" onClick={handleComment} />
+          <FiSend
+            className="comment-btn"
+            onClick={handleComment}
+            style={{ cursor: "pointer" }}
+          />
         </div>
       </div>
     </div>

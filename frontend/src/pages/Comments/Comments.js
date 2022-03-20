@@ -18,20 +18,22 @@ const Comments = () => {
   }, [postId]);
 
   return (
-    <div className="comment-page-container">
-      {comments?.map((e, i) => (
-        <CommentBox {...e} key={`comment-${i + 1}`} />
-      ))}
-    </div>
+    <>
+      <NavBar />
+      <div className="comment-page-container">
+        {comments?.map((e, i) => (
+          <CommentBox {...e} key={`comment-${i + 1}`} />
+        ))}
+      </div>
+    </>
   );
 };
 
-const CommentBox = ({ text, postedBy }) => {
+const CommentBox = ({ text, postedBy, _id }) => {
   const userId = JSON.parse(localStorage.getItem("userInfo"))._id;
 
   return (
     <>
-      <NavBar />
       <div className="comment-box">
         <div>
           <span className="name">{postedBy.name}</span>

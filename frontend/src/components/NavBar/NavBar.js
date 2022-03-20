@@ -25,7 +25,7 @@ const NavBar = () => {
       <div className="nav-wrapper">
         <Link to="/homepage" className="logo" onClick={() => setToggler(false)}>
           {pathname.includes("comments" || "likes") ? (
-            <BiArrowBack />
+            <BiArrowBack style={{ cursor: "pointer", fontSize: "22px" }} />
           ) : (
             <img src={Logo} alt="" />
           )}

@@ -66,9 +66,11 @@
         font-size: 27px;
       }
     }
+    .span,
     span {
       font-size: 13px;
       color: $secondary;
+      text-decoration: none;
     }
   }
 }
