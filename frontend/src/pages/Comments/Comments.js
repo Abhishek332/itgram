@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { axios } from "../../api/axios";
 import { MdDelete } from "react-icons/md";
 import "./Comments.scss";
+import { NavBar } from "../../components";
 
 const Comments = () => {
   const { postId } = useParams(),
@@ -29,16 +30,19 @@ const CommentBox = ({ text, postedBy }) => {
   const userId = JSON.parse(localStorage.getItem("userInfo"))._id;
 
   return (
-    <div className="comment-box">
-      <div>
-        <span className="name">{postedBy.name}</span>
-        <button className="follow-btn">Follow</button>
+    <>
+      <NavBar />
+      <div className="comment-box">
+        <div>
+          <span className="name">{postedBy.name}</span>
+          <button className="follow-btn">Follow</button>
+        </div>
+        <div>
+          <span className="comment">{text}</span>
+          {userId === postedBy._id && <MdDelete className="delete-btn" />}
+        </div>
       </div>
-      <div>
-        <span className="comment">{text}</span>
-        {userId === postedBy._id && <MdDelete className="delete-btn" />}
-      </div>
-    </div>
+    </>
   );
 };
 

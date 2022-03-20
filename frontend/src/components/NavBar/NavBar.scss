@@ -20,6 +20,7 @@
     aspect-ratio: 1/1;
     cursor: pointer;
     position: relative;
+    @include flexCenter(center, center, row);
   }
   img {
     position: absolute;

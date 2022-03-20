@@ -33,7 +33,7 @@ const PostCard = ({ title, body, photo, postedBy, _id, likes, comments }) => {
     handleComment = () => {
       axios
         .put("/add-comment", { postId: _id, text: textArea })
-        .then((res) => console.log(res.data))
+        .then((res) => navigate(`/comments/${_id}`))
         .catch((err) => console.log(err));
     };
 

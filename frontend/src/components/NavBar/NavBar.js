@@ -2,13 +2,15 @@ import "./NavBar.scss";
 import { Logo } from "../../assets/images";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { USER_LOGIN } from "../../redux/login/constant";
 import { USER_SIGNUP } from "../../redux/signup/constant";
+import { BiArrowBack } from "react-icons/bi";
 
 const NavBar = () => {
   const navigate = useNavigate(),
+    { pathname } = useLocation(),
     dispatch = useDispatch(),
     [toggler, setToggler] = useState(false),
     handleLogout = () => {
@@ -22,7 +24,11 @@ const NavBar = () => {
     <>
       <div className="nav-wrapper">
         <Link to="/homepage" className="logo" onClick={() => setToggler(false)}>
-          <img src={Logo} alt="" />
+          {pathname.includes("comments" || "likes") ? (
+            <BiArrowBack />
+          ) : (
+            <img src={Logo} alt="" />
+          )}
         </Link>
         <div className="avatar-icon" onClick={() => setToggler(!toggler)}>
           <img
