@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 const PostCard = ({ title, body, photo, postedBy, _id, likes, comments }) => {
   const navigate = useNavigate(),
     userId = JSON.parse(localStorage.getItem("userInfo"))._id,
+    [likesData, setLikesData] = useState(likes),
     [liked, setLiked] = useState(likes.includes(userId)),
     [likeAnimation, setLikeAnimation] = useState(false),
     [textArea, setTextArea] = useState();
@@ -16,7 +17,10 @@ const PostCard = ({ title, body, photo, postedBy, _id, likes, comments }) => {
   const handleLike_UnLike = (val) => {
       axios
         .put(`/${val}`, { postId: _id })
-        .then((res) => setLiked(res.data.result.likes.includes(userId)))
+        .then((res) => {
+          setLikesData(res.data.result.likes);
+          setLiked(res.data.result.likes.includes(userId));
+        })
         .catch((err) => console.log("error", err));
     },
     handleLikeAnimation = () => {
@@ -59,7 +63,7 @@ const PostCard = ({ title, body, photo, postedBy, _id, likes, comments }) => {
           )}
           <AiOutlineComment onClick={() => navigate(`/comments/${_id}`)} />
         </div>
-        <span>{`${likes.length} likes | ${comments.length} comments`}</span>
+        <span>{`${likesData.length} likes | ${comments.length} comments`}</span>
         <div className="comment-input">
           <textarea
             placeholder="comment here ..."
