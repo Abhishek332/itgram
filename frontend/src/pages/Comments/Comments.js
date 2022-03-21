@@ -22,15 +22,27 @@ const Comments = () => {
       <NavBar />
       <div className="comment-page-container">
         {comments?.map((e, i) => (
-          <CommentBox {...e} key={`comment-${i + 1}`} />
+          <CommentBox
+            {...e}
+            key={`comment-${i + 1}`}
+            setComments={setComments}
+          />
         ))}
       </div>
     </>
   );
 };
 
-const CommentBox = ({ text, postedBy, _id }) => {
-  const userId = JSON.parse(localStorage.getItem("userInfo"))._id;
+const CommentBox = ({ text, postedBy, _id, setComments }) => {
+  const { postId } = useParams(),
+    userId = JSON.parse(localStorage.getItem("userInfo"))._id;
+
+  const handleDelete = () => {
+    axios
+      .put(`/delele-comment/${_id}`, { postId })
+      .then((res) => console.log("response", res))
+      .catch((error) => console.log(error));
+  };
 
   return (
     <>
@@ -41,7 +53,9 @@ const CommentBox = ({ text, postedBy, _id }) => {
         </div>
         <div>
           <span className="comment">{text}</span>
-          {userId === postedBy._id && <MdDelete className="delete-btn" />}
+          {userId === postedBy._id && (
+            <MdDelete className="delete-btn" onClick={handleDelete} />
+          )}
         </div>
       </div>
     </>

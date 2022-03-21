@@ -33,15 +33,12 @@ CommentRouter.get("/get-comments/:postId", requireLogin, (req, res) => {
     .catch((err) => console.log(err));
 });
 
-CommentRouter.put("/delete-comment", requireLogin, (req, res) => {
+CommentRouter.put("/delete-comment/:commentId", requireLogin, (req, res) => {
   Post.findByIdAndUpdate(
     req.body.postId,
     {
       $pull: {
-        comments: {
-          text: req.body.text,
-          postedBy: req.user._id,
-        },
+        comments: findById(req.params.commentId),
       },
     },
     { new: true }
