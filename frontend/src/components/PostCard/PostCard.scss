@@ -7,19 +7,28 @@
   .header {
     @include flexCenter(space-between, center, row);
     padding: 15px;
-    h3 {
-      color: $primary;
-      font-weight: 600;
+    .left {
+      @include flexCenter(flex-start, center, row);
+      h3 {
+        color: $primary;
+        font-weight: 600;
+        margin-right: 5px;
+      }
+      .follow-btn {
+        height: 25px;
+        padding: 0 20px;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 500;
+        color: $secondary_1;
+        background-color: $primary;
+        margin-left: 15px;
+      }
     }
-    .follow-btn {
-      height: 25px;
-      padding: 0 20px;
-      border-radius: 4px;
-      font-size: 14px;
-      font-weight: 500;
-      color: $secondary_1;
-      background-color: $primary;
-      margin-left: 15px;
+    .delete-btn {
+      font-size: 24px;
+      cursor: pointer;
+      color: $primary;
     }
   }
   .post-img-wrapper {
@@ -71,6 +80,29 @@
       font-size: 13px;
       color: $secondary;
       text-decoration: none;
+    }
+  }
+  .popup-box {
+    @include flexCenter(space-between, center, column);
+    span {
+      margin: 15px;
+      font-size: 27px;
+    }
+    .flexer {
+      @include flexCenter(space-between, center, row);
+      width: 170px;
+      button {
+        height: 27px;
+        width: 80px;
+        border: 1.5px solid $primary;
+        background-color: transparent;
+        color: $primary;
+        font-size: 14px;
+        &:first-child {
+          background-color: $primary;
+          color: $secondary_1;
+        }
+      }
     }
   }
 }

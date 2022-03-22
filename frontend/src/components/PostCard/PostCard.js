@@ -6,6 +6,8 @@ import { Like } from "../../assets/images";
 import { axios } from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { MdDelete } from "react-icons/md";
+import { PopupGenerator } from "../";
 
 const PostCard = ({ title, body, photo, postedBy, _id, likes, comments }) => {
   const navigate = useNavigate(),
@@ -13,6 +15,7 @@ const PostCard = ({ title, body, photo, postedBy, _id, likes, comments }) => {
     [likesData, setLikesData] = useState(likes),
     [liked, setLiked] = useState(likes.includes(userId)),
     [likeAnimation, setLikeAnimation] = useState(false),
+    [showPopup, setShowPopup] = useState(false),
     [textArea, setTextArea] = useState();
 
   const handleLike_UnLike = (val) => {
@@ -36,13 +39,19 @@ const PostCard = ({ title, body, photo, postedBy, _id, likes, comments }) => {
         .put("/add-comment", { postId: _id, text: textArea })
         .then((res) => navigate(`/comments/${_id}`))
         .catch((err) => console.log(err));
-    };
+    },
+    handleDeletePost = () => {};
 
   return (
     <div className="post-card-wrapper">
       <div className="header">
-        <h3>{postedBy.name}</h3>
-        <button className="follow-btn">Follow</button>
+        <div className="left">
+          <h3>{postedBy.name}</h3>
+          <button className="follow-btn">Follow</button>
+        </div>
+        {userId === postedBy._id && (
+          <MdDelete className="delete-btn" onClick={() => setShowPopup(true)} />
+        )}
       </div>
       <div className="post-img-wrapper">
         <img
@@ -93,6 +102,25 @@ const PostCard = ({ title, body, photo, postedBy, _id, likes, comments }) => {
           />
         </div>
       </div>
+      {showPopup && (
+        <PopupGenerator popupCloser={setShowPopup}>
+          <div className="popup-box">
+            <p>Are you want to delete your post?</p>
+            <span>😢</span>
+            <div className="flexer">
+              <button
+                onClick={() => {
+                  handleDeletePost();
+                  setShowPopup(false);
+                }}
+              >
+                Yes
+              </button>
+              <button onClick={() => setShowPopup(false)}>No</button>
+            </div>
+          </div>
+        </PopupGenerator>
+      )}
     </div>
   );
 };

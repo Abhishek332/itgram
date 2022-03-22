@@ -1,0 +1,29 @@
+@import "../../utils/sass";
+
+.popup-container {
+  @include flexCenter(center, center, row);
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  background-color: $secondary_3;
+  .popup-closer {
+    position: absolute;
+    z-index: 1001;
+    height: 100%;
+    width: 100%;
+  }
+  .popup {
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 3px $secondary_2;
+    position: relative;
+    z-index: 1002;
+    background-color: $secondary_1;
+    min-height: 200px;
+    min-width: 320px;
+    @include flexCenter(center, center, row);
+  }
+}
