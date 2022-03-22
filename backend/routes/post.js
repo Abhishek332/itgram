@@ -26,6 +26,13 @@ PostRouter.post("/create-post", requireLogin, (req, res) => {
     .catch((err) => console.log(err));
 });
 
+PostRouter.put("/delete-post/:postId", (req, res) => {
+  Post.findById(req.params.postId)
+    .deleteOne()
+    .then(() => res.json({message : "Post deleted Successfully."}))
+    .catch((error) => console.log(error));
+});
+
 PostRouter.get("/allpost", requireLogin, (req, res) => {
   Post.find()
     .populate("postedBy", "_id name")
