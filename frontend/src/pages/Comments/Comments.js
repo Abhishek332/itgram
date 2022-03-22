@@ -33,14 +33,18 @@ const Comments = () => {
   );
 };
 
-const CommentBox = ({ text, postedBy, _id, setComments }) => {
+const CommentBox = ({ setComments, ...obj }) => {
   const { postId } = useParams(),
-    userId = JSON.parse(localStorage.getItem("userInfo"))._id;
+    userId = JSON.parse(localStorage.getItem("userInfo"))._id,
+    {
+      postedBy: { _id, name },
+      text,
+    } = obj;
 
   const handleDelete = () => {
     axios
-      .put(`/delele-comment/${_id}`, { postId })
-      .then((res) => console.log("response", res))
+      .put(`/delete-comment/${postId}`, obj)
+      .then(({ data: { comments } }) => setComments(comments))
       .catch((error) => console.log(error));
   };
 
@@ -48,12 +52,12 @@ const CommentBox = ({ text, postedBy, _id, setComments }) => {
     <>
       <div className="comment-box">
         <div>
-          <span className="name">{postedBy.name}</span>
+          <span className="name">{name}</span>
           <button className="follow-btn">Follow</button>
         </div>
         <div>
           <span className="comment">{text}</span>
-          {userId === postedBy._id && (
+          {userId === _id && (
             <MdDelete className="delete-btn" onClick={handleDelete} />
           )}
         </div>

@@ -33,19 +33,19 @@ CommentRouter.get("/get-comments/:postId", requireLogin, (req, res) => {
     .catch((err) => console.log(err));
 });
 
-CommentRouter.put("/delete-comment/:commentId", requireLogin, (req, res) => {
+CommentRouter.put("/delete-comment/:postId", requireLogin, (req, res) => {
   Post.findByIdAndUpdate(
-    req.body.postId,
+    req.params.postId,
     {
       $pull: {
-        comments: findById(req.params.commentId),
+        comments: req.body,
       },
     },
     { new: true }
   )
     .populate("comments.postedBy", "_id name")
-    .exec((error, result) => {
+    .exec((error, { comments }) => {
       if (error) return res.status(422).json({ error });
-      res.json({ result });
+      res.json({ comments });
     });
 });
