@@ -5,9 +5,12 @@ import "./HomePage.scss";
 import { allPostCall } from "../../redux/homepage/action";
 import { useDispatch, useSelector } from "react-redux";
 import { Loader2 } from "../../assets/images";
+import { axios } from "../../api/axios";
+import { useToaster, ToastBox } from "../../utils/toaster";
 
 const HomePage = () => {
   const navigate = useNavigate(),
+    toaster = useToaster(),
     dispatch = useDispatch(),
     { loading, allpost } = useSelector((state) => state.allPost);
 
@@ -19,6 +22,16 @@ const HomePage = () => {
     dispatch(allPostCall());
   }, [dispatch]);
 
+  const handleDeletePost = (postId) => {
+    axios
+      .put(`/delete-post/${postId}`)
+      .then(({ data: { message } }) => {
+        toaster("success", message);
+        dispatch(allPostCall());
+      })
+      .catch((err) => console.log(err));
+  };
+
   console.log("allpost", allpost);
 
   return (
@@ -27,10 +40,15 @@ const HomePage = () => {
       <div className="home-page-container">
         {allpost &&
           allpost.map((Post, index) => (
-            <PostCard key={`post-${index}`} {...Post} />
+            <PostCard
+              key={`post-${index}`}
+              {...Post}
+              handleDeletePost={handleDeletePost}
+            />
           ))}
       </div>
       <Footer />
+      <ToastBox />
       {loading && <Loader Illustration={Loader2} />}
     </>
   );

@@ -8,11 +8,9 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 import { PopupGenerator } from "../";
-import { useToaster, ToastBox } from "../../utils/toaster";
 
-const PostCard = ({ title, body, photo, postedBy, _id, likes, comments }) => {
+const PostCard = ({ title, body, photo, postedBy, _id, likes, comments, handleDeletePost }) => {
   const navigate = useNavigate(),
-    toaster = useToaster(),
     userId = JSON.parse(localStorage.getItem("userInfo"))._id,
     [likesData, setLikesData] = useState(likes),
     [liked, setLiked] = useState(likes.includes(userId)),
@@ -41,16 +39,9 @@ const PostCard = ({ title, body, photo, postedBy, _id, likes, comments }) => {
         .put("/add-comment", { postId: _id, text: textArea })
         .then((res) => navigate(`/comments/${_id}`))
         .catch((err) => console.log(err));
-    },
-    handleDeletePost = () => {
-      axios
-        .put(`/delete-post/${_id}`)
-        .then(({ data: { message } }) => toaster("success", message))
-        .catch((err) => console.log(err));
     };
 
   return (
-    <>
       <div className="post-card-wrapper">
         <div className="header">
           <div className="left">
@@ -115,6 +106,7 @@ const PostCard = ({ title, body, photo, postedBy, _id, likes, comments }) => {
             />
           </div>
         </div>
+        
         {showPopup && (
           <PopupGenerator popupCloser={setShowPopup}>
             <div className="popup-box">
@@ -123,7 +115,7 @@ const PostCard = ({ title, body, photo, postedBy, _id, likes, comments }) => {
               <div className="flexer">
                 <button
                   onClick={() => {
-                    handleDeletePost();
+                    handleDeletePost(_id);
                     setShowPopup(false);
                   }}
                 >
@@ -135,8 +127,6 @@ const PostCard = ({ title, body, photo, postedBy, _id, likes, comments }) => {
           </PopupGenerator>
         )}
       </div>
-      <ToastBox />
-    </>
   );
 };
 

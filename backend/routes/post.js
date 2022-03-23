@@ -27,9 +27,8 @@ PostRouter.post("/create-post", requireLogin, (req, res) => {
 });
 
 PostRouter.put("/delete-post/:postId", (req, res) => {
-  Post.findById(req.params.postId)
-    .deleteOne()
-    .then(() => res.json({message : "Post deleted Successfully."}))
+  Post.deleteOne({ _id: req.params.postId })
+    .then(() => res.json({ message: "Post deleted Successfully." }))
     .catch((error) => console.log(error));
 });
 
