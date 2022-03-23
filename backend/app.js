@@ -6,6 +6,7 @@ import "./models/post.js";
 import { AuthRouter } from "./routes/auth.js";
 import { PostRouter } from "./routes/post.js";
 import { CommentRouter } from "./routes/comments.js";
+import { UserRouter } from "./routes/user.js";
 
 //Connect with database
 mongoose.connect(MONGOURI);
@@ -24,3 +25,4 @@ app.use(express.json());
 app.use(AuthRouter);
 app.use(PostRouter);
 app.use(CommentRouter);
+app.use(UserRouter);
