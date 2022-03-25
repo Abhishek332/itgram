@@ -65,12 +65,12 @@
       position: relative;
       overflow: hidden;
       border-radius: 3px;
-      img {
+      box-shadow: 0 0 2px $secondary;
+      @include flexCenter(center, center, row) img {
         position: absolute;
         top: 0;
-        left: 0;
-        height: 100%;
-        width: auto;
+        width: 100%;
+        height: auto;
       }
     }
   }
