@@ -1,25 +1,22 @@
 import "./Profile.scss";
 import { NavBar, Loader } from "../../components";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { myPostCall } from "../../redux/profile/action";
+import { useParams } from "react-router-dom";
+import { profileDataCall } from "../../redux/profile/action";
 import { useDispatch, useSelector } from "react-redux";
 import { Loader2 } from "../../assets/images";
 
 const Profile = () => {
-  const navigate = useNavigate(),
+  const { userId } = useParams() || null,
     dispatch = useDispatch(),
-    { loading, mypost } = useSelector((state) => state.myPost);
+    { loading, user, posts } = useSelector((state) => state.profile);
 
   useEffect(() => {
-    if (!localStorage.getItem("userInfo")) navigate("/");
-  }, [navigate]);
+    dispatch(profileDataCall(userId));
+  }, [dispatch, userId]);
 
-  useEffect(() => {
-    dispatch(myPostCall());
-  }, [dispatch]);
-
-  console.log("mypost", mypost);
+  console.log("user", user);
+  console.log("posts", posts);
 
   return (
     <>
@@ -34,7 +31,7 @@ const Profile = () => {
           </div>
           <div className="profile-info">
             <div className="user-info">
-              <p className="username">Abhishek Porwal</p>
+              <p className="username">{user?.name}</p>
               <button className="follow-btn">Follow</button>
             </div>
             <div className="other-info">
@@ -46,7 +43,7 @@ const Profile = () => {
         </div>
         <hr />
         <div className="gallery">
-          {mypost?.map(
+          {posts?.map(
             (post, i) =>
               post.photo && (
                 <div className="gallery-item" key={`item - ${i + 1}`}>

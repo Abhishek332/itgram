@@ -13,6 +13,7 @@ const NavBar = () => {
     { pathname } = useLocation(),
     dispatch = useDispatch(),
     [toggler, setToggler] = useState(false),
+    userId = JSON.parse(localStorage.getItem("userInfo") ?? "")?._id,
     handleLogout = () => {
       localStorage.clear();
       dispatch({ type: USER_SIGNUP.NULL });
@@ -44,7 +45,7 @@ const NavBar = () => {
               : { transform: "translateX(100%)" }
           }
         >
-          <Link to="/profile" className="nav-link">
+          <Link to={`/profile/${userId}`} className="nav-link">
             Profile
           </Link>
           <p className="nav-link" onClick={() => handleLogout()}>
