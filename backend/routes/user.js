@@ -19,3 +19,55 @@ UserRouter.get("/profile/:id", (req, res) => {
     })
     .catch((err) => res.status(404).json({ error: "User not found." }));
 });
+
+UserRouter.put("/follow/:followingId", requireLogin, (req, res) => {
+  User.findByIdAndUpdate(
+    req.params.followingId,
+    {
+      $addToSet: {
+        followers: req.user._id,
+      },
+    },
+    { new: true },
+    (error, result) => {
+      if (error) return res.status(422).json({ error });
+      User.findByIdAndUpdate(
+        req.user._id,
+        {
+          $addToSet: {
+            followings: req.params.followingId,
+          },
+        },
+        { new: true }
+      )
+        .then((result) => res.json(result))
+        .catch((error) => res.status(422).json({ error }));
+    }
+  );
+});
+
+UserRouter.put("/unfollow/:followingId", requireLogin, (req, res) => {
+  User.findByIdAndUpdate(
+    req.params.followingId,
+    {
+      $pull: {
+        followers: req.user._id,
+      },
+    },
+    { new: true },
+    (error, result) => {
+      if (error) return res.status(422).json({ error });
+      User.findByIdAndUpdate(
+        req.user._id,
+        {
+          $pull: {
+            followings: req.params.followingId,
+          },
+        },
+        { new: true }
+      )
+        .then((result) => res.json(result))
+        .catch((error) => res.status(422).json({ error }));
+    }
+  );
+});
