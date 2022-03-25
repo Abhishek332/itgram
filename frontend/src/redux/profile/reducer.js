@@ -1,16 +1,21 @@
-import { MY_POST } from "./constant";
+import { PROFILE } from "./constant";
 
-const myPostState = {
+const profileState = {
   loading: false,
-  mypost: null,
+  user: null,
+  posts: null,
 };
 
-export const MyPostReducer = (state = myPostState, action) => {
+export const ProfileReducer = (state = profileState, action) => {
   switch (action.type) {
-    case MY_POST.REQUEST:
-      return { loading: true, mypost: null };
-    case MY_POST.SUCCESS:
-      return { loading: false, mypost: action.payload };
+    case PROFILE.REQUEST:
+      return { loading: true, user: null, posts: null };
+    case PROFILE.SUCCESS:
+      return {
+        loading: false,
+        user: action.payload.user,
+        posts: action.payload.posts,
+      };
     default:
       return state;
   }

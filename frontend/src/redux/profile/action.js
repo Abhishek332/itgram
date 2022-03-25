@@ -1,15 +1,14 @@
-import { MY_POST } from "./constant";
+import { PROFILE } from "./constant";
 import { axios } from "../../api/axios";
 
-export const myPostCall = () => {
+export const profileDataCall = (userId) => {
   return async (dispatch) => {
-    dispatch({ type: MY_POST.REQUEST });
+    dispatch({ type: PROFILE.REQUEST });
     try {
       axios
-        .get("/mypost")
-        .then((res) =>
-          dispatch({ type: MY_POST.SUCCESS, payload: res.data.mypost })
-        );
+        .get(`/profile/${userId}`)
+        .then((res) => dispatch({ type: PROFILE.SUCCESS, payload: res.data }))
+        .catch((err) => console.log(err));
     } catch (error) {
       console.log(error);
     }
