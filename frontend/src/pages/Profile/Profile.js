@@ -15,9 +15,6 @@ const Profile = () => {
     dispatch(profileDataCall(userId));
   }, [dispatch, userId]);
 
-  console.log("user", user);
-  console.log("posts", posts);
-
   return (
     <>
       <NavBar />
@@ -35,7 +32,7 @@ const Profile = () => {
               <button className="follow-btn">Follow</button>
             </div>
             <div className="other-info">
-              <p>1425 posts</p>
+              <p>{`${posts?.length} posts`}</p>
               <p>1425 following</p>
               <p>3265 followers</p>
             </div>
