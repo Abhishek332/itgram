@@ -5,7 +5,6 @@ import "./models/user.js";
 import "./models/post.js";
 import { AuthRouter } from "./routes/auth.js";
 import { PostRouter } from "./routes/post.js";
-import { CommentRouter } from "./routes/comments.js";
 import { UserRouter } from "./routes/user.js";
 
 //Connect with database
@@ -24,5 +23,4 @@ app.listen(PORT, () => console.log(`Server is running at ${PORT}`));
 app.use(express.json());
 app.use(AuthRouter);
 app.use(PostRouter);
-app.use(CommentRouter);
 app.use(UserRouter);

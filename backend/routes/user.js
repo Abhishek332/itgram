@@ -6,7 +6,7 @@ export const UserRouter = express.Router();
 const Post = mongoose.model("Post"),
   User = mongoose.model("User");
 
-UserRouter.get("/user/:id", (req, res) => {
+UserRouter.get("/profile/:id", (req, res) => {
   User.findOne({ _id: req.params.id })
     .select("-password")
     .then((user) => {
