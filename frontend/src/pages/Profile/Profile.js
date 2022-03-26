@@ -1,19 +1,41 @@
 import "./Profile.scss";
 import { NavBar, Loader } from "../../components";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { profileDataCall } from "../../redux/profile/action";
 import { useDispatch, useSelector } from "react-redux";
 import { Loader2 } from "../../assets/images";
+import { axios } from "../../api/axios";
 
 const Profile = () => {
+  const { loading, user, posts } = useSelector((state) => state.profile);
+
   const { userId } = useParams() || null,
-    dispatch = useDispatch(),
-    { loading, user, posts } = useSelector((state) => state.profile);
+    loggedUserId = JSON.parse(localStorage.getItem("userInfo") ?? "")?._id,
+    [userData, setUserData] = useState(),
+    dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(profileDataCall(userId));
   }, [dispatch, userId]);
+
+  useEffect(() => {
+    if (!user) return;
+    setUserData(user);
+  }, [user]);
+
+  const handleFollow = () => {
+      axios
+        .put(`/follow/${userId}`)
+        .then((res) => setUserData(res.data))
+        .catch((error) => console.log(error));
+    },
+    handleUnfollow = () => {
+      axios
+        .put(`/unfollow/${userId}`)
+        .then((res) => setUserData(res.data))
+        .catch((error) => console.log(error));
+    };
 
   return (
     <>
@@ -29,12 +51,21 @@ const Profile = () => {
           <div className="profile-info">
             <div className="user-info">
               <p className="username">{user?.name}</p>
-              <button className="follow-btn">Follow</button>
+              {loggedUserId !== userId &&
+                (userData?.followers?.includes(loggedUserId) ? (
+                  <button className="unfollow-btn" onClick={handleUnfollow}>
+                    Unfollow
+                  </button>
+                ) : (
+                  <button className="follow-btn" onClick={handleFollow}>
+                    Follow
+                  </button>
+                ))}
             </div>
             <div className="other-info">
               <p>{`${posts?.length} posts`}</p>
-              <p>1425 following</p>
-              <p>3265 followers</p>
+              <p>{`${userData?.followings?.length} following`}</p>
+              <p>{`${userData?.followers?.length} followers`}</p>
             </div>
           </div>
         </div>

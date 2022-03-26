@@ -32,14 +32,21 @@
           margin-right: 20px;
           color: $primary;
         }
-        .follow-btn {
+        button {
           height: 30px;
           padding: 0 20px;
           border-radius: 4px;
           font-size: 16px;
           font-weight: 600;
+          border: 1.5px solid $primary;
+        }
+        .follow-btn {
           color: $secondary_1;
           background-color: $primary;
+        }
+        .unfollow-btn {
+          background-color: $secondary_1;
+          color: $primary;
         }
       }
       .other-info {
@@ -66,7 +73,8 @@
       overflow: hidden;
       border-radius: 3px;
       box-shadow: 0 0 2px $secondary;
-      @include flexCenter(center, center, row) img {
+      @include flexCenter(center, center, row);
+      img {
         position: absolute;
         top: 0;
         width: 100%;
