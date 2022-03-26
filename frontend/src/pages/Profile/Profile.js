@@ -62,6 +62,7 @@ const Profile = () => {
                   </button>
                 ))}
             </div>
+            <span>{user?.email}</span>
             <div className="other-info">
               <p>{`${posts?.length} posts`}</p>
               <p>{`${userData?.followings?.length} following`}</p>
