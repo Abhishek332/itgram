@@ -22,24 +22,25 @@ UserRouter.get("/profile/:id", (req, res) => {
 
 UserRouter.put("/follow/:followingId", requireLogin, (req, res) => {
   User.findByIdAndUpdate(
-    req.params.followingId,
+    req.user._id,
     {
       $addToSet: {
-        followers: req.user._id,
+        followings: req.params.followingId,
       },
     },
     { new: true },
     (error, result) => {
       if (error) return res.status(422).json({ error });
       User.findByIdAndUpdate(
-        req.user._id,
+        req.params.followingId,
         {
           $addToSet: {
-            followings: req.params.followingId,
+            followers: req.user._id,
           },
         },
         { new: true }
       )
+        .select("-password")
         .then((result) => res.json(result))
         .catch((error) => res.status(422).json({ error }));
     }
@@ -48,24 +49,25 @@ UserRouter.put("/follow/:followingId", requireLogin, (req, res) => {
 
 UserRouter.put("/unfollow/:followingId", requireLogin, (req, res) => {
   User.findByIdAndUpdate(
-    req.params.followingId,
+    req.user._id,
     {
       $pull: {
-        followers: req.user._id,
+        followings: req.params.followingId,
       },
     },
     { new: true },
     (error, result) => {
       if (error) return res.status(422).json({ error });
       User.findByIdAndUpdate(
-        req.user._id,
+        req.params.followingId,
         {
           $pull: {
-            followings: req.params.followingId,
+            followers: req.user._id,
           },
         },
         { new: true }
       )
+        .select("-password")
         .then((result) => res.json(result))
         .catch((error) => res.status(422).json({ error }));
     }
