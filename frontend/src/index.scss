@@ -18,25 +18,21 @@ button {
   outline: none;
   cursor: pointer;
 }
-
-.follow-btn {
+.follow-btn,
+.unfollow-btn {
   height: 24px;
   padding: 0 20px;
   border-radius: 4px;
   font-size: 14px;
   font-weight: 600;
   border: 1.5px solid $primary;
-  color: $secondary_1;
-  background-color: $primary;
   margin-left: 12px;
 }
+.follow-btn {
+  color: $secondary_1;
+  background-color: $primary;
+}
 .unfollow-btn {
-  height: 27px;
-  padding: 0 20px;
-  border-radius: 4px;
-  font-size: 15px;
-  font-weight: 600;
-  border: 1.5px solid $primary;
   background-color: $secondary_1;
   color: $primary;
 }
