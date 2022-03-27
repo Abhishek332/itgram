@@ -10,14 +10,14 @@ import { axios } from "../../api/axios";
 const Profile = () => {
   const { loading, user, posts } = useSelector((state) => state.profile);
 
-  const { userId } = useParams() || null,
+  const { followingId } = useParams() || null,
     loggedUserId = JSON.parse(localStorage.getItem("userInfo") ?? "")?._id,
     [userData, setUserData] = useState(),
     dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(profileDataCall(userId));
-  }, [dispatch, userId]);
+    dispatch(profileDataCall(followingId));
+  }, [dispatch, followingId]);
 
   useEffect(() => {
     if (!user) return;
@@ -26,7 +26,7 @@ const Profile = () => {
 
   const handleFollowUnfollow = (option) => {
     axios
-      .put(`/${option}/${userId}`)
+      .put(`/${option}/${followingId}`)
       .then((res) =>
         setUserData({ ...userData, followers: res.data.followers })
       )
@@ -47,7 +47,7 @@ const Profile = () => {
           <div className="profile-info">
             <div className="user-info">
               <p className="username">{user?.name}</p>
-              {loggedUserId !== userId &&
+              {loggedUserId !== followingId &&
                 (userData?.followers?.includes(loggedUserId) ? (
                   <button
                     className="unfollow-btn"
