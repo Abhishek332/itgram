@@ -25,7 +25,8 @@ const PostCard = ({
     [liked, setLiked] = useState(likes.includes(loggedUserId)),
     [likeAnimation, setLikeAnimation] = useState(false),
     [showPopup, setShowPopup] = useState(false),
-    [textArea, setTextArea] = useState();
+    [textArea, setTextArea] = useState(),
+    [followers, setFollowers] = useState(postedBy.followers);
 
   const handleLike_UnLike = (val) => {
       axios
@@ -48,6 +49,12 @@ const PostCard = ({
         .put("/add-comment", { postId: _id, text: textArea })
         .then((res) => navigate(`/comments/${_id}`))
         .catch((err) => console.log(err));
+    },
+    handleFollowUnfollow = (option) => {
+      axios
+        .put(`/${option}/${postedBy._id}`)
+        .then((res) => setFollowers(res.data.followers))
+        .catch((error) => console.log(error));
     };
 
   return (
@@ -58,7 +65,22 @@ const PostCard = ({
             {" "}
             <h3>{postedBy.name}</h3>
           </Link>
-          <button className="follow-btn">Follow</button>
+          {loggedUserId !== postedBy._id &&
+            (followers.includes(loggedUserId) ? (
+              <button
+                className="unfollow-btn"
+                onClick={() => handleFollowUnfollow("unfollow")}
+              >
+                Unfollow
+              </button>
+            ) : (
+              <button
+                className="follow-btn"
+                onClick={() => handleFollowUnfollow("follow")}
+              >
+                Follow
+              </button>
+            ))}
         </div>
         {loggedUserId === postedBy._id && (
           <MdDelete className="delete-btn" onClick={() => setShowPopup(true)} />

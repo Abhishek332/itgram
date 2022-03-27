@@ -7,7 +7,7 @@ const Post = mongoose.model("Post");
 
 PostRouter.get("/allpost", requireLogin, (req, res) => {
   Post.find()
-    .populate("postedBy", "_id name")
+    .populate("postedBy", "_id name followers")
     .then((posts) => res.json({ posts: posts.reverse() }))
     .catch((err) => console.log(err));
 });
