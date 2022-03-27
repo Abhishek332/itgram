@@ -20,9 +20,9 @@ const PostCard = ({
   handleDeletePost,
 }) => {
   const navigate = useNavigate(),
-    userId = JSON.parse(localStorage.getItem("userInfo"))._id,
+    loggedUserId = JSON.parse(localStorage.getItem("userInfo"))._id,
     [likesData, setLikesData] = useState(likes),
-    [liked, setLiked] = useState(likes.includes(userId)),
+    [liked, setLiked] = useState(likes.includes(loggedUserId)),
     [likeAnimation, setLikeAnimation] = useState(false),
     [showPopup, setShowPopup] = useState(false),
     [textArea, setTextArea] = useState();
@@ -32,7 +32,7 @@ const PostCard = ({
         .put(`/${val}`, { postId: _id })
         .then((res) => {
           setLikesData(res.data.result.likes);
-          setLiked(res.data.result.likes.includes(userId));
+          setLiked(res.data.result.likes.includes(loggedUserId));
         })
         .catch((err) => console.log("error", err));
     },
@@ -54,12 +54,13 @@ const PostCard = ({
     <div className="post-card-wrapper">
       <div className="header">
         <div className="left">
-        <Link to={`/profile/${postedBy._id}`}> <h3>
-            {postedBy.name}
-          </h3></Link>
+          <Link to={`/profile/${postedBy._id}`}>
+            {" "}
+            <h3>{postedBy.name}</h3>
+          </Link>
           <button className="follow-btn">Follow</button>
         </div>
-        {userId === postedBy._id && (
+        {loggedUserId === postedBy._id && (
           <MdDelete className="delete-btn" onClick={() => setShowPopup(true)} />
         )}
       </div>
