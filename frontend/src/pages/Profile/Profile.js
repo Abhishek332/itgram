@@ -24,18 +24,14 @@ const Profile = () => {
     setUserData(user);
   }, [user]);
 
-  const handleFollow = () => {
-      axios
-        .put(`/follow/${userId}`)
-        .then((res) => setUserData(res.data))
-        .catch((error) => console.log(error));
-    },
-    handleUnfollow = () => {
-      axios
-        .put(`/unfollow/${userId}`)
-        .then((res) => setUserData(res.data))
-        .catch((error) => console.log(error));
-    };
+  const handleFollowUnfollow = (option) => {
+    axios
+      .put(`/${option}/${userId}`)
+      .then((res) =>
+        setUserData({ ...userData, followers: res.data.followers })
+      )
+      .catch((error) => console.log(error));
+  };
 
   return (
     <>
@@ -53,11 +49,17 @@ const Profile = () => {
               <p className="username">{user?.name}</p>
               {loggedUserId !== userId &&
                 (userData?.followers?.includes(loggedUserId) ? (
-                  <button className="unfollow-btn" onClick={handleUnfollow}>
+                  <button
+                    className="unfollow-btn"
+                    onClick={() => handleFollowUnfollow("unfollow")}
+                  >
                     Unfollow
                   </button>
                 ) : (
-                  <button className="follow-btn" onClick={handleFollow}>
+                  <button
+                    className="follow-btn"
+                    onClick={() => handleFollowUnfollow("follow")}
+                  >
                     Follow
                   </button>
                 ))}
