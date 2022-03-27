@@ -3,32 +3,3 @@
 .comment-page-container {
   @include pageWrapper;
 }
-
-.comment-box {
-  border-bottom: 0.5px solid $secondary_2;
-  & > div {
-    margin: 8px 0;
-    &:last-child {
-      @include flexCenter(space-between, center, row);
-      p {
-        width: 80%;
-        color: $secondary;
-        font-size: 14px;
-      }
-    }
-  }
-  margin: 20px 0;
-  padding: 15px;
-  .name {
-    font-size: 18px;
-    font-weight: 600;
-    color: $primary;
-  }
-  .delete-btn {
-    cursor: pointer;
-    font-size: 20px;
-  }
-  .comment {
-    font-size: 16px;
-  }
-}

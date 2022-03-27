@@ -71,7 +71,7 @@ PostRouter.put("/unlike", requireLogin, (req, res) => {
 
 PostRouter.get("/get-comments/:postId", requireLogin, (req, res) => {
   Post.findById(req.params.postId)
-    .populate("comments.postedBy", "_id name")
+    .populate("comments.postedBy", "_id name followers")
     .then(({ comments }) => res.json({ comments }))
     .catch((err) => console.log(err));
 });
