@@ -2,24 +2,23 @@ import { MdDelete } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import { axios } from "../../api/axios";
 import "./CommentBox.scss";
-import { useState } from "react";
 
-const CommentBox = ({ setComments, ...obj }) => {
+const CommentBox = ({ fetchComments, ...obj }) => {
   const { postId } = useParams(),
     loggedUserId = JSON.parse(localStorage.getItem("userInfo"))._id,
-    { postedBy, text } = obj,
-    [followers, setFollowers] = useState(postedBy.followers);
+    { postedBy, text } = obj;
+  // [followers, setFollowers] = useState(postedBy.followers);
 
   const handleDelete = () => {
       axios
         .put(`/delete-comment/${postId}`, obj)
-        .then(({ data: { comments } }) => setComments(comments))
+        .then(() => fetchComments())
         .catch((error) => console.log(error));
     },
     handleFollowUnfollow = (option) => {
       axios
         .put(`/${option}/${postedBy._id}`)
-        .then((res) => setFollowers(res.data.followers))
+        .then(() => fetchComments())
         .catch((error) => console.log(error));
     };
 
@@ -29,7 +28,7 @@ const CommentBox = ({ setComments, ...obj }) => {
         <div>
           <span className="name">{postedBy.name}</span>
           {loggedUserId !== postedBy._id &&
-            (followers.includes(loggedUserId) ? (
+            (postedBy.followers.includes(loggedUserId) ? (
               <button
                 className="unfollow-btn"
                 onClick={() => handleFollowUnfollow("unfollow")}
