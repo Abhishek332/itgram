@@ -11,12 +11,13 @@
   .profile-header {
     @include flexCenter(flex-start, center, row);
     .avatar-box {
-      flex: 0.25;
+      flex: 0.2;
       aspect-ratio: 1/1;
       overflow: hidden;
       border-radius: 50%;
       position: relative;
       margin-right: 5%;
+      object,
       img {
         position: absolute;
         width: 100%;

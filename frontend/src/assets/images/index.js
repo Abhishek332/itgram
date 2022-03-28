@@ -5,5 +5,6 @@ import WelCome from "./welcome.gif";
 import Logo from "./logo.png";
 import Like from "./like.gif";
 import Lock from "./lock.gif";
+import DefaultAvatar from "./defaultAvatar.png";
 
-export { Loader1, Loader2, Loader3, WelCome, Logo, Like, Lock };
+export { Loader1, Loader2, Loader3, WelCome, Logo, Like, Lock, DefaultAvatar };

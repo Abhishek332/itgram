@@ -16,18 +16,19 @@
   }
   .logo,
   .avatar-icon {
-    height: 90%;
+    height: 100%;
     aspect-ratio: 1/1;
     cursor: pointer;
     position: relative;
     @include flexCenter(center, center, row);
   }
-  img {
+  img,
+  object {
     position: absolute;
     width: 100%;
   }
   .avatar-icon {
-    height: 80%;
+    height: 75%;
     border-radius: 50%;
     overflow: hidden;
   }
