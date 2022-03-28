@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 const { ObjectId } = mongoose.Schema.Types;
 
 const userSchema = new mongoose.Schema({
+  profilePic: {
+    type: String,
+    default: "default",
+  },
   name: {
     type: String,
     required: true,

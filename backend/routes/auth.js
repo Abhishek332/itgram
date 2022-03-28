@@ -26,10 +26,12 @@ AuthRouter.post("/signup", (req, res) => {
             .save()
             .then(() => {
               User.findOne({ email }).then((userFound) => {
-                const { _id, name, email, followers, followings } = userFound;
+                const { _id, profilePic, name, email, followers, followings } =
+                  userFound;
                 const token = JWT.sign({ _id }, JWT_SECRET);
                 return res.json({
                   _id,
+                  profilePic,
                   name,
                   email,
                   followers,
@@ -60,10 +62,12 @@ AuthRouter.post("/signin", (req, res) => {
         .compare(password, userFound.password)
         .then((doMatch) => {
           if (doMatch) {
-            const { _id, name, email, followings, followers } = userFound;
+            const { _id, profilePic, name, email, followings, followers } =
+              userFound;
             const token = JWT.sign({ _id }, JWT_SECRET);
             return res.json({
               _id,
+              profilePic,
               name,
               email,
               followings,
