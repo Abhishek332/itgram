@@ -1,0 +1,7 @@
+@import "../../utils/sass/";
+
+.update-pic-container {
+  @include flexCenter(center, center, row);
+  width: 100vw;
+  height: 100vh;
+}
