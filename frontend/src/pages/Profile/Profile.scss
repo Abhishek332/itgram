@@ -17,6 +17,16 @@
       border-radius: 50%;
       position: relative;
       margin-right: 5%;
+      @include flexCenter(center, center, row);
+      .edit-btn {
+        position: absolute;
+        color: rgba(255, 255, 255, 0.767);
+        z-index: 100;
+        left: 50%;
+        bottom: 8%;
+        font-size: 20px;
+        cursor: pointer;
+      }
       object,
       img {
         position: absolute;

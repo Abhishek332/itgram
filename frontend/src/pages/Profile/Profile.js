@@ -1,11 +1,12 @@
 import "./Profile.scss";
 import { NavBar, Loader } from "../../components";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { profileDataCall } from "../../redux/profile/action";
 import { useDispatch, useSelector } from "react-redux";
 import { DefaultAvatar, Loader2 } from "../../assets/images";
 import { axios } from "../../api/axios";
+import { FaEdit } from "react-icons/fa";
 
 const Profile = () => {
   const { loading, user, posts } = useSelector((state) => state.profile);
@@ -39,6 +40,9 @@ const Profile = () => {
       <div className="profile-page-container">
         <div className="profile-header">
           <div className="avatar-box">
+            <Link to="/update-pic">
+              <FaEdit className="edit-btn" />
+            </Link>
             <object data={DefaultAvatar} type="image/png">
               <img src={user?.profilePic} alt="" />
             </object>
