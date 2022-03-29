@@ -12,7 +12,8 @@ const fileTypes = ["JPEG", "PNG", "WEBP", "JPG"];
 const UpdatePic = () => {
   const navigate = useNavigate(),
     dispatch = useDispatch(),
-    loggedUserId = JSON.parse(localStorage.getItem("userInfo") ?? "")._id,
+    userInfo = JSON.parse(localStorage.getItem("userInfo") ?? ""),
+    loggedUserId = userInfo._id,
     { imageUrl } = useSelector((state) => state.imageUpload);
 
   useEffect(() => {
@@ -22,13 +23,14 @@ const UpdatePic = () => {
   useEffect(() => {
     if (!imageUrl) return;
     axios
-      .put("/update-pic", imageUrl)
+      .put("/update-pic", { imageUrl })
       .then(() => {
         dispatch({ type: IMAGE_UPLOAD.NULL });
+        localStorage.setItem("userInfo", JSON.stringify({ ...userInfo, profilePic: imageUrl }));
         navigate(`/profile/${loggedUserId}`);
       })
       .catch((error) => console.log(error));
-  }, [dispatch, imageUrl, loggedUserId, navigate]);
+  }, [dispatch, imageUrl, loggedUserId, navigate, userInfo]);
 
   return (
     <div className="update-pic-container">

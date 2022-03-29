@@ -73,3 +73,15 @@ UserRouter.put("/unfollow/:followingId", requireLogin, (req, res) => {
     }
   );
 });
+
+UserRouter.put("/update-pic", requireLogin, (req, res) => {
+  User.findByIdAndUpdate(
+    req.user._id,
+    { profilePic: req.body.imageUrl },
+    { new: true },
+    (error, result) => {
+      if (error) return res.status(422).json({ error });
+      res.json({ result });
+    }
+  );
+});

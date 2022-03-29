@@ -43,9 +43,11 @@ const Profile = () => {
             <Link to="/update-pic">
               <FaEdit className="edit-btn" />
             </Link>
-            <object data={DefaultAvatar} type="image/png">
+            {user?.profilePic === "default" ? (
+              <img src={DefaultAvatar} alt="" />
+            ) : (
               <img src={user?.profilePic} alt="" />
-            </object>
+            )}
           </div>
           <div className="profile-info">
             <div className="user-info">

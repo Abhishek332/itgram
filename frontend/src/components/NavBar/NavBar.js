@@ -34,9 +34,11 @@ const NavBar = () => {
           )}
         </Link>
         <div className="avatar-icon" onClick={() => setToggler(!toggler)}>
-          <object data={DefaultAvatar} type="image/png">
+          {profilePic === "default" ? (
+            <img src={DefaultAvatar} alt="" />
+          ) : (
             <img src={profilePic} alt="" />
-          </object>
+          )}
         </div>
         <div
           className="toggler"
