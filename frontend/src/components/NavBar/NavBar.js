@@ -26,20 +26,25 @@ const NavBar = () => {
   return (
     <>
       <div className="nav-wrapper">
-        <Link to="/homepage" className="logo" onClick={() => setToggler(false)}>
-          {pathname.includes("comments" || "likes") ? (
-            <BiArrowBack style={{ cursor: "pointer", fontSize: "22px" }} />
-          ) : (
-            <img src={Logo} alt="" />
-          )}
-        </Link>
-        <div className="avatar-icon" onClick={() => setToggler(!toggler)}>
-          {profilePic === "default" ? (
-            <img src={DefaultAvatar} alt="" />
-          ) : (
-            <img src={profilePic} alt="" />
-          )}
-        </div>
+        {pathname.includes("comments" || "likes") ? (
+          <BiArrowBack style={{ cursor: "pointer", fontSize: "22px" }} />
+        ) : (
+          <img
+            src={Logo}
+            className="logo"
+            alt=""
+            onClick={() => {
+              setToggler(false);
+              navigate("/homepage");
+            }}
+          />
+        )}
+        <img
+          className="avatar-icon"
+          src={profilePic === "default" ? DefaultAvatar : profilePic}
+          alt=""
+          onClick={() => setToggler(!toggler)}
+        />
         <div
           className="toggler"
           style={

@@ -18,6 +18,7 @@
       position: relative;
       margin-right: 5%;
       @include flexCenter(center, center, row);
+      box-shadow: 0 0 0.5px $secondary;
       .edit-btn {
         position: absolute;
         color: rgba(255, 255, 255, 0.767);
@@ -28,10 +29,8 @@
         cursor: pointer;
       }
       img {
-        position: absolute;
-        width: auto;
+        object-fit: contain;
         height: 100%;
-        top: 0;
       }
     }
     .profile-info {
