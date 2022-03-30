@@ -1,24 +1,23 @@
 import { MdDelete } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import { axios } from "../../api/axios";
-import "./CommentBox.scss";
+import "./CommonBox.scss";
 
-const CommentBox = ({ fetchComments, ...obj }) => {
+const CommonBox = ({ hasComment, fetchData, ...obj }) => {
   const { postId } = useParams(),
     loggedUserId = JSON.parse(localStorage.getItem("userInfo"))._id,
     { postedBy, text } = obj;
-  // [followers, setFollowers] = useState(postedBy.followers);
 
   const handleDelete = () => {
       axios
         .put(`/delete-comment/${postId}`, obj)
-        .then(() => fetchComments())
+        .then(() => fetchData())
         .catch((error) => console.log(error));
     },
     handleFollowUnfollow = (option) => {
       axios
         .put(`/${option}/${postedBy._id}`)
-        .then(() => fetchComments())
+        .then(() => fetchData())
         .catch((error) => console.log(error));
     };
 
@@ -44,15 +43,17 @@ const CommentBox = ({ fetchComments, ...obj }) => {
               </button>
             ))}
         </div>
-        <div>
-          <span className="comment">{text}</span>
-          {loggedUserId === postedBy._id && (
-            <MdDelete className="delete-btn" onClick={handleDelete} />
-          )}
-        </div>
+        {hasComment && (
+          <div>
+            <span className="comment">{text}</span>
+            {loggedUserId === postedBy._id && (
+              <MdDelete className="delete-btn" onClick={handleDelete} />
+            )}
+          </div>
+        )}
       </div>
     </>
   );
 };
 
-export default CommentBox;
+export default CommonBox;
