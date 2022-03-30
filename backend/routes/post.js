@@ -113,3 +113,10 @@ PostRouter.put("/delete-comment/:postId", requireLogin, (req, res) => {
       res.json({ comments });
     });
 });
+
+PostRouter.get("/get-likes/:postId", requireLogin, (req, res) => {
+  Post.findById(req.params.postId)
+    .populate("likes", "_id name followers")
+    .then(({ likes }) => res.json({ likes }))
+    .catch((err) => console.log(err));
+});
