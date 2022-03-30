@@ -6,7 +6,7 @@ import "./CommonBox.scss";
 const CommonBox = ({ hasComment, fetchData, ...obj }) => {
   const { postId } = useParams(),
     loggedUserId = JSON.parse(localStorage.getItem("userInfo"))._id,
-    { postedBy, text } = obj;
+    postedBy = obj.postedBy;
 
   const handleDelete = () => {
       axios
@@ -45,7 +45,7 @@ const CommonBox = ({ hasComment, fetchData, ...obj }) => {
         </div>
         {hasComment && (
           <div>
-            <span className="comment">{text}</span>
+            <span className="comment">{obj.text}</span>
             {loggedUserId === postedBy._id && (
               <MdDelete className="delete-btn" onClick={handleDelete} />
             )}

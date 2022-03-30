@@ -15,13 +15,14 @@ const NavBar = () => {
     [toggler, setToggler] = useState(false),
     userInfo = JSON.parse(localStorage.getItem("userInfo") ?? ""),
     userId = userInfo._id,
-    profilePic = userInfo.profilePic,
-    handleLogout = () => {
-      localStorage.clear();
-      dispatch({ type: USER_SIGNUP.NULL });
-      dispatch({ type: USER_LOGIN.NULL });
-      navigate("/");
-    };
+    profilePic = userInfo.profilePic;
+
+  const handleLogout = () => {
+    localStorage.clear();
+    dispatch({ type: USER_SIGNUP.NULL });
+    dispatch({ type: USER_LOGIN.NULL });
+    navigate("/");
+  };
 
   return (
     <>
@@ -35,7 +36,7 @@ const NavBar = () => {
             alt=""
             onClick={() => {
               setToggler(false);
-              navigate("/homepage");
+              navigate(-1);
             }}
           />
         )}

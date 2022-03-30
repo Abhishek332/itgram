@@ -115,7 +115,7 @@ const PostCard = ({
             style={{ cursor: "pointer" }}
           />
         </div>
-        <Link to="/likes" className="span">
+        <Link to={`/likes/${_id}`} className="span">
           <span>{`${likesData.length} likes`}</span>
         </Link>
         <span>{" | "}</span>
