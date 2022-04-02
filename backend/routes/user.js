@@ -14,7 +14,7 @@ UserRouter.get("/profile/:id", (req, res) => {
         .populate("postedBy", "_id name")
         .exec((error, posts) => {
           if (error) return res.status(422).json({ error });
-          return res.json({ user, posts });
+          return res.json({ user, posts: posts.reverse() });
         });
     })
     .catch((err) => res.status(404).json({ error: "User not found." }));
