@@ -36,3 +36,12 @@ button {
   background-color: $secondary_1;
   color: $primary;
 }
+.name {
+  font-size: 18px;
+  font-weight: 600;
+  color: $primary;
+}
+
+.page-container{
+  @include pageWrapper;
+}

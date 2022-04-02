@@ -4,5 +4,6 @@ import PostCard from "./PostCard/PostCard";
 import Footer from "./Footer/Footer";
 import PopupGenerator from "./PopupGenerator/PopupGenerator";
 import CommentBox from "./CommentBox/CommentBox";
+import FollowBox from "./FollowBox/FollowBox";
 
-export { NavBar, Loader, PostCard, Footer, PopupGenerator, CommentBox };
+export { NavBar, Loader, PostCard, Footer, PopupGenerator, CommentBox, FollowBox };

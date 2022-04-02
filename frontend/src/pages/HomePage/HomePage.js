@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { NavBar, PostCard, Footer, Loader } from "../../components";
-import "./HomePage.scss";
 import { allPostCall } from "../../redux/homepage/action";
 import { useDispatch, useSelector } from "react-redux";
 import { Loader2 } from "../../assets/images";
@@ -37,7 +36,7 @@ const HomePage = () => {
   return (
     <>
       <NavBar />
-      <div className="home-page-container">
+      <div className="page-container">
         {allpost &&
           allpost.map((Post, index) => (
             <PostCard

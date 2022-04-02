@@ -6,6 +6,7 @@ import {
   HomePage,
   CreatePost,
   Comments,
+  Likes,
   UpdatePic,
 } from "./pages";
 
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/homepage" element={<HomePage />} />
         <Route path="/create-post" element={<CreatePost />} />
         <Route path="/comments/:postId" element={<Comments />} />
+        <Route path="/likes/:postId" element={<Likes />} />
         <Route path="/profile/:followingId" element={<Profile />} />
         <Route path="/update-pic" element={<UpdatePic />} />
       </Routes>

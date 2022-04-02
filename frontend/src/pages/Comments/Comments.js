@@ -2,7 +2,6 @@ import { CommentBox } from "../../components";
 import { useParams } from "react-router-dom";
 import { useState, useEffect, useCallback } from "react";
 import { axios } from "../../api/axios";
-import "./Comments.scss";
 import { NavBar } from "../../components";
 
 const Comments = () => {
@@ -23,7 +22,7 @@ const Comments = () => {
   return (
     <>
       <NavBar />
-      <div className="comment-page-container">
+      <div className="page-container">
         {comments?.map((e, i) => (
           <CommentBox
             {...e}

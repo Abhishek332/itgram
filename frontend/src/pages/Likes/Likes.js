@@ -1,4 +1,4 @@
-import { CommonBox } from "../../components";
+import { FollowBox } from "../../components";
 import { useParams } from "react-router-dom";
 import { useState, useEffect, useCallback } from "react";
 import { axios } from "../../api/axios";
@@ -7,6 +7,7 @@ import { NavBar } from "../../components";
 
 const Likes = () => {
   const { postId } = useParams(),
+    loggedUserId = JSON.parse(localStorage.getItem("userInfo"))._id,
     [likes, setLikes] = useState();
 
   const fetchLikes = useCallback(() => {
@@ -24,9 +25,12 @@ const Likes = () => {
     <>
       <NavBar />
       <div className="likes-page-container">
-        {likes?.map((e, i) => (
-          <CommonBox {...e} key={`likes-${i + 1}`} fetchData={fetchLikes} />
-        ))}
+        {likes?.map(
+          (e, i) =>
+            e._id !== loggedUserId && (
+              <FollowBox {...e} key={`likes-${i + 1}`} fetchData={fetchLikes} />
+            )
+        )}
       </div>
     </>
   );

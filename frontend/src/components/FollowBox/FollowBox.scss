@@ -1,0 +1,7 @@
+@import "../../utils/sass/";
+
+.follow-box{
+  @include flexCenter(space-between, center, row);
+  border-bottom: 0.5px solid $secondary_2;
+  padding: 15px;
+}

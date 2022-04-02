@@ -4,6 +4,7 @@ import Profile from "./Profile/Profile";
 import HomePage from "./HomePage/HomePage";
 import CreatePost from "./CreatePost/CreatePost";
 import Comments from "./Comments/Comments";
+import Likes from "./Likes/Likes";
 import UpdatePic from "./UpdatePic/UpdatePic";
 
 export {
@@ -13,5 +14,6 @@ export {
   HomePage,
   CreatePost,
   Comments,
+  Likes,
   UpdatePic,
 };
