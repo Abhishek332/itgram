@@ -28,7 +28,7 @@ const NavBar = () => {
     <>
       <div className="nav-wrapper">
         {pathname.includes("comments" || "likes") ? (
-          <BiArrowBack style={{ cursor: "pointer", fontSize: "22px" }} />
+          <BiArrowBack style={{ cursor: "pointer", fontSize: "22px" }} onClick={()=>navigate(-1)} />
         ) : (
           <img
             src={Logo}
