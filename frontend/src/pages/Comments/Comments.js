@@ -1,4 +1,4 @@
-import { CommonBox } from "../../components";
+import { CommentBox } from "../../components";
 import { useParams } from "react-router-dom";
 import { useState, useEffect, useCallback } from "react";
 import { axios } from "../../api/axios";
@@ -25,11 +25,10 @@ const Comments = () => {
       <NavBar />
       <div className="comment-page-container">
         {comments?.map((e, i) => (
-          <CommonBox
+          <CommentBox
             {...e}
             key={`comment-${i + 1}`}
-            fetchData={fetchComments}
-            hasComment
+            fetchComments={fetchComments}
           />
         ))}
       </div>
