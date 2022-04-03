@@ -27,17 +27,20 @@ const NavBar = () => {
   return (
     <>
       <div className="nav-wrapper">
-        {pathname.includes("comments" || "likes") ? (
-          <BiArrowBack style={{ cursor: "pointer", fontSize: "22px" }} onClick={()=>navigate(-1)} />
-        ) : (
+        {pathname.includes("profile" || "homepage") ? (
           <img
             src={Logo}
             className="logo"
             alt=""
             onClick={() => {
               setToggler(false);
-              navigate(-1);
+              navigate("/homepage");
             }}
+          />
+        ) : (
+          <BiArrowBack
+            style={{ cursor: "pointer", fontSize: "22px" }}
+            onClick={() => navigate(-1)}
           />
         )}
         <img

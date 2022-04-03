@@ -5,6 +5,7 @@ import HomePage from "./HomePage/HomePage";
 import CreatePost from "./CreatePost/CreatePost";
 import Comments from "./Comments/Comments";
 import Likes from "./Likes/Likes";
+import Followers from "./Followers/Followers";
 import UpdatePic from "./UpdatePic/UpdatePic";
 
 export {
@@ -15,5 +16,6 @@ export {
   CreatePost,
   Comments,
   Likes,
+  Followers,
   UpdatePic,
 };

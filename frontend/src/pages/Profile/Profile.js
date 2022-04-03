@@ -75,8 +75,22 @@ const Profile = () => {
             <span>{user?.email}</span>
             <div className="other-info">
               <p>{`${posts?.length} posts`}</p>
-              <p>{`${userData?.followings?.length} following`}</p>
-              <p>{`${userData?.followers?.length} followers`}</p>
+              <p>
+                <Link
+                  to={`/followers/${followingId}`}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  {`${userData?.followers?.length} followers`}
+                </Link>
+              </p>
+              <p>
+                <Link
+                  to={`/followings/${followingId}`}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  {`${userData?.followings?.length} following`}
+                </Link>
+              </p>
             </div>
           </div>
         </div>
