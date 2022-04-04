@@ -89,6 +89,13 @@ UserRouter.put("/update-pic", requireLogin, (req, res) => {
 UserRouter.get("/get-followers/:userId", (req, res) => {
   User.findById(req.params.userId)
     .populate("followers", "_id name followers")
-    .then(({ followers }) => res.json({ followers }))
+    .then(({ followers }) => res.json(followers))
+    .catch((error) => console.log(error));
+});
+
+UserRouter.get("/get-followings/:userId", (req, res) => {
+  User.findById(req.params.userId)
+    .populate("followings", "_id name followers")
+    .then(({ followings }) => res.json(followings))
     .catch((error) => console.log(error));
 });
