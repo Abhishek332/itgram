@@ -6,7 +6,6 @@ import { NavBar } from "../../components";
 
 const Followers = () => {
   const { userId } = useParams(),
-    loggedUserId = JSON.parse(localStorage.getItem("userInfo"))._id,
     [followers, setFollowers] = useState();
 
   const fetchFollowers = useCallback(() => {
@@ -24,16 +23,13 @@ const Followers = () => {
     <>
       <NavBar />
       <div className="page-container">
-        {followers?.map(
-          (e, i) =>
-            e._id !== loggedUserId && (
-              <FollowBox
-                {...e}
-                key={`follower-${i + 1}`}
-                fetchData={fetchFollowers}
-              />
-            )
-        )}
+        {followers?.map((e, i) => (
+          <FollowBox
+            {...e}
+            key={`follower-${i + 1}`}
+            fetchData={fetchFollowers}
+          />
+        ))}
       </div>
     </>
   );
