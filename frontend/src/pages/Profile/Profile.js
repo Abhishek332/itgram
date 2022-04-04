@@ -11,7 +11,7 @@ import { FaEdit } from "react-icons/fa";
 const Profile = () => {
   const { loading, user, posts } = useSelector((state) => state.profile);
 
-  const { followingId } = useParams() || null,
+  const { followingId } = useParams(),
     loggedUserId = JSON.parse(localStorage.getItem("userInfo") ?? "")?._id,
     [userData, setUserData] = useState(),
     dispatch = useDispatch();
