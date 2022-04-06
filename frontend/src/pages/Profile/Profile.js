@@ -40,9 +40,11 @@ const Profile = () => {
       <div className="profile-page-container">
         <div className="profile-header">
           <div className="avatar-box">
-            <Link to="/update-pic">
-              <FaEdit className="edit-btn" />
-            </Link>
+            {loggedUserId === followingId && (
+              <Link to="/update-pic">
+                <FaEdit className="edit-btn" />
+              </Link>
+            )}
             <img
               src={
                 user?.profilePic === "default"
