@@ -6,7 +6,6 @@ import { NavBar } from "../../components";
 
 const Likes = () => {
   const { postId } = useParams(),
-    loggedUserId = JSON.parse(localStorage.getItem("userInfo"))._id,
     [likes, setLikes] = useState();
 
   const fetchLikes = useCallback(() => {

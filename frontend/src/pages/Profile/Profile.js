@@ -99,9 +99,13 @@ const Profile = () => {
           {posts?.map(
             (post, i) =>
               post.photo && (
-                <div className="gallery-item" key={`item - ${i + 1}`}>
+                <Link
+                  to={`/post/${post._id}`}
+                  className="gallery-item"
+                  key={`item - ${i + 1}`}
+                >
                   <img src={post.photo} alt="" />
-                </div>
+                </Link>
               )
           )}
         </div>

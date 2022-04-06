@@ -57,7 +57,11 @@ const NavBar = () => {
               : { transform: "translateX(100%)" }
           }
         >
-          <Link to={`/profile/${userId}`} className="nav-link">
+          <Link
+            to={`/profile/${userId}`}
+            className="nav-link"
+            onClick={() => setToggler(!toggler)}
+          >
             Profile
           </Link>
           <p className="nav-link" onClick={() => handleLogout()}>

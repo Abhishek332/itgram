@@ -17,7 +17,7 @@ const PostCard = ({
   _id,
   likes,
   comments,
-  handleDeletePost,
+  getData,
 }) => {
   const navigate = useNavigate(),
     loggedUserId = JSON.parse(localStorage.getItem("userInfo"))._id,
@@ -55,10 +55,19 @@ const PostCard = ({
         .put(`/${option}/${postedBy._id}`)
         .then((res) => setFollowers(res.data.followers))
         .catch((error) => console.log(error));
+    },
+    handleDeletePost = () => {
+      axios
+        .put(`/delete-post/${_id}`)
+        .then(({ data: { message } }) => {
+          !getData && navigate(-1);
+          getData(message);
+        })
+        .catch((err) => console.log(err));
     };
 
   return (
-    <div className="post-card-wrapper">
+    <div className="post-card-wrapper page-container">
       <div className="header">
         <div className="left">
           <Link to={`/profile/${postedBy._id}`}>
@@ -144,7 +153,7 @@ const PostCard = ({
             <div className="flexer">
               <button
                 onClick={() => {
-                  handleDeletePost(_id);
+                  handleDeletePost();
                   setShowPopup(false);
                 }}
               >
