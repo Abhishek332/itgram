@@ -1,4 +1,4 @@
-import { PostCard } from "../../components";
+import { NavBar, PostCard } from "../../components";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { axios } from "../../api/axios";
@@ -11,7 +11,12 @@ const Post = () => {
     axios.get(`/get-post/${postId}`).then((res) => setData(res.data));
   }, [postId]);
 
-  return <>{data && <PostCard {...data} />}</>;
+  return (
+    <>
+      <NavBar />
+      {data && <PostCard {...data} />}
+    </>
+  );
 };
 
 export default Post;
