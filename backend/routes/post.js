@@ -12,6 +12,13 @@ PostRouter.get("/allpost", requireLogin, (req, res) => {
     .catch((err) => console.log(err));
 });
 
+PostRouter.get("/get-post/:postId", (req, res) => {
+  Post.findById(req.params.postId)
+    .populate("postedBy", "_id name followers")
+    .then((post) => res.json(post))
+    .catch((error) => console.log(error));
+});
+
 PostRouter.post("/create-post", requireLogin, (req, res) => {
   const { title, body, photo } = req.body;
   if (!title || !body)
