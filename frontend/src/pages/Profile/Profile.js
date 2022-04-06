@@ -74,7 +74,14 @@ const Profile = () => {
             </div>
             <span>{user?.email}</span>
             <div className="other-info">
-              <p>{`${posts?.length} posts`}</p>
+              <p>
+                <Link
+                  to={`/user-posts/${followingId}`}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  {`${posts?.length} posts`}
+                </Link>
+              </p>
               <p>
                 <Link
                   to={`/followers/${followingId}`}

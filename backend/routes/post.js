@@ -12,6 +12,13 @@ PostRouter.get("/allpost", requireLogin, (req, res) => {
     .catch((err) => console.log(err));
 });
 
+PostRouter.get("/get-user-posts/:userId", (req, res) => {
+  Post.find({ postedBy: req.params.userId })
+    .populate("postedBy", "_id name followers")
+    .then((posts) => res.json(posts))
+    .catch((error) => console.log(error));
+});
+
 PostRouter.get("/get-post/:postId", (req, res) => {
   Post.findById(req.params.postId)
     .populate("postedBy", "_id name followers")
