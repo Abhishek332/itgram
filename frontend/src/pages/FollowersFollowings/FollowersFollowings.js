@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { axios } from "../../api/axios";
 import { NavBar } from "../../components";
 
-const Common = () => {
+const FollowersFollowings = () => {
   const { userId } = useParams(),
     { pathname } = useLocation(),
     [data, setData] = useState();
@@ -36,4 +36,4 @@ const Common = () => {
   );
 };
 
-export default Common;
+export default FollowersFollowings;

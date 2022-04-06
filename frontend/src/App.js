@@ -7,9 +7,9 @@ import {
   CreatePost,
   Comments,
   Likes,
-  Common,
   UpdatePic,
   Post,
+  FollowersFollowings,
 } from "./pages";
 
 const App = () => {
@@ -22,8 +22,8 @@ const App = () => {
         <Route path="/create-post" element={<CreatePost />} />
         <Route path="/comments/:postId" element={<Comments />} />
         <Route path="/likes/:postId" element={<Likes />} />
-        <Route path="/followers/:userId" element={<Common />} />
-        <Route path="/followings/:userId" element={<Common />} />
+        <Route path="/followers/:userId" element={<FollowersFollowings />} />
+        <Route path="/followings/:userId" element={<FollowersFollowings />} />
         <Route path="/profile/:followingId" element={<Profile />} />
         <Route path="/update-pic" element={<UpdatePic />} />
         <Route path="/post/:postId" element={<Post />} />

@@ -5,7 +5,7 @@ import HomePage from "./HomePage/HomePage";
 import CreatePost from "./CreatePost/CreatePost";
 import Comments from "./Comments/Comments";
 import Likes from "./Likes/Likes";
-import Common from "./Common/Common";
+import FollowersFollowings from "./FollowersFollowings/FollowersFollowings";
 import UpdatePic from "./UpdatePic/UpdatePic";
 import Post from "./Post/Post";
 
@@ -17,7 +17,7 @@ export {
   CreatePost,
   Comments,
   Likes,
-  Common,
+  FollowersFollowings,
   UpdatePic,
-  Post
+  Post,
 };
