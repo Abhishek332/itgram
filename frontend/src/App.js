@@ -9,6 +9,7 @@ import {
   Likes,
   Common,
   UpdatePic,
+  Post,
 } from "./pages";
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/followings/:userId" element={<Common />} />
         <Route path="/profile/:followingId" element={<Profile />} />
         <Route path="/update-pic" element={<UpdatePic />} />
+        <Route path="/post/:postId" element={<Post />} />
       </Routes>
     </Router>
   );

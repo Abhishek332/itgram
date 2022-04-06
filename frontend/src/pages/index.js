@@ -7,6 +7,7 @@ import Comments from "./Comments/Comments";
 import Likes from "./Likes/Likes";
 import Common from "./Common/Common";
 import UpdatePic from "./UpdatePic/UpdatePic";
+import Post from "./Post/Post";
 
 export {
   OnBoarding,
@@ -18,4 +19,5 @@ export {
   Likes,
   Common,
   UpdatePic,
+  Post
 };
