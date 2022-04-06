@@ -1,10 +1,9 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { NavBar, PostCard, Footer, Loader } from "../../components";
 import { allPostCall } from "../../redux/homepage/action";
 import { useDispatch, useSelector } from "react-redux";
 import { Loader2 } from "../../assets/images";
-import { axios } from "../../api/axios";
 import { useToaster, ToastBox } from "../../utils/toaster";
 
 const HomePage = () => {
@@ -17,21 +16,18 @@ const HomePage = () => {
     if (!localStorage.getItem("userInfo")) navigate("/");
   }, [navigate]);
 
+  const getData = useCallback(
+    (message = null) => {
+      dispatch(allPostCall());
+      message && toaster("success", message);
+    },
+    [dispatch, toaster]
+  );
+
   useEffect(() => {
-    dispatch(allPostCall());
-  }, [dispatch]);
-
-  const handleDeletePost = (postId) => {
-    axios
-      .put(`/delete-post/${postId}`)
-      .then(({ data: { message } }) => {
-        toaster("success", message);
-        dispatch(allPostCall());
-      })
-      .catch((err) => console.log(err));
-  };
-
-  console.log("allpost", allpost);
+    getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -39,11 +35,7 @@ const HomePage = () => {
       <div className="page-container">
         {allpost &&
           allpost.map((Post, index) => (
-            <PostCard
-              key={`post-${index}`}
-              {...Post}
-              handleDeletePost={handleDeletePost}
-            />
+            <PostCard key={`post-${index}`} {...Post} getData={getData} />
           ))}
       </div>
       <Footer />
