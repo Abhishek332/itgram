@@ -9,6 +9,7 @@
   top: 0;
   z-index: 1000;
   background-color: $secondary_3;
+  backdrop-filter: blur(5px);
   .popup-closer {
     position: absolute;
     z-index: 1001;

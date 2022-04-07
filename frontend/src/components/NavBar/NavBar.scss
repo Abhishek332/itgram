@@ -27,19 +27,36 @@
     overflow: hidden;
     box-shadow: 0 0 0.5px $secondary;
   }
-  .toggler {
+}
+
+.toggler {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 80px;
+  left: 0;
+  @media (max-width: 768px) {
+    top: 60px;
+  }
+  .closer {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: $secondary_3;
+    backdrop-filter: blur(10px);
+    transition: 0.2s;
+  }
+  .toggler-card {
     position: absolute;
     right: 0;
-    top: 80px;
+    top: 0;
     width: 250px;
-    transition: 0.3s;
+    height: 100%;
+    transition: 0.2s;
     z-index: 100;
     @include flexCenter(flex-start, center, column);
     background-color: $secondary_1;
     box-shadow: 0 0 3px $secondary;
-    @media (max-width: 768px) {
-      top: 60px;
-    }
     .nav-link {
       width: 100%;
       padding: 15px;
@@ -49,6 +66,14 @@
       font-weight: 600;
       font-size: 16px;
       text-align: center;
+    }
+    .ad {
+      text-align: center;
+      bottom: 100px;
+      position: absolute;
+      span {
+        color: $secondary_2;
+      }
     }
   }
 }

@@ -49,8 +49,18 @@ const NavBar = () => {
           alt=""
           onClick={() => setToggler(!toggler)}
         />
+      </div>
+      <div
+        className="toggler"
+        style={toggler ? { zIndex: 99 } : { zIndex: -99 }}
+      >
         <div
-          className="toggler"
+          className="closer"
+          onClick={() => setToggler(false)}
+          style={toggler ? { opacity: 1 } : { opacity: 0 }}
+        ></div>
+        <div
+          className="toggler-card"
           style={
             toggler
               ? { transform: "translateX(0%)" }
@@ -67,6 +77,11 @@ const NavBar = () => {
           <p className="nav-link" onClick={() => handleLogout()}>
             Logout
           </p>
+          <div className="ad">
+            <span className="developer">{"Design & Developed by"}</span>
+            <h4>Abhishek</h4>
+            <span>{`Copyright@${new Date().getFullYear()}`}</span>
+          </div>
         </div>
       </div>
     </>
