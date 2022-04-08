@@ -1,18 +1,19 @@
 import "./PortFolio.scss";
 import { ImLinkedin } from "react-icons/im";
-import { IoLogoWhatsapp } from "react-icons/io";
+import { MdEmail } from "react-icons/md";
 import { ImGithub } from "react-icons/im";
+// import { FaShareAlt } from "react-icons/fa";
 
 const PortFolio = () => {
   return (
     <div className="portfolio-container">
-      <div className="bottom">
+      <div className="links">
         <a
           href={`https://wa.me/WhatsAppNumber?text=${encodeURI(
             "Text to send."
           )}`}
         >
-          <IoLogoWhatsapp />
+          <ImGithub />
         </a>
         <a
           href={`https://wa.me/WhatsAppNumber?text=${encodeURI(
@@ -26,7 +27,7 @@ const PortFolio = () => {
             "Text to send."
           )}`}
         >
-          <ImGithub />
+          <MdEmail />
         </a>
       </div>
       <img
@@ -34,6 +35,18 @@ const PortFolio = () => {
         alt=""
         className="user-image"
       />
+      <div className="content">
+        <h6>I'm</h6>
+        <h1>Abhishek Porwal</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
+          alias maiores veniam hic earum non at blanditiis amet saepe! Amet!
+        </p>
+        <a href="sendto:abhishek@gmail.com" className="button">
+          Contact Me
+        </a>
+      </div>
+      {/* <FaShareAlt /> */}
     </div>
   );
 };
