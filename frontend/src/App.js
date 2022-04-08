@@ -10,7 +10,8 @@ import {
   UpdatePic,
   Post,
   FollowersFollowings,
-  UserPosts
+  UserPosts,
+  PortFolio,
 } from "./pages";
 
 const App = () => {
@@ -28,7 +29,8 @@ const App = () => {
         <Route path="/profile/:followingId" element={<Profile />} />
         <Route path="/update-pic" element={<UpdatePic />} />
         <Route path="/post/:postId" element={<Post />} />
-        <Route path="/user-posts/:userId" element={<UserPosts/>} />
+        <Route path="/user-posts/:userId" element={<UserPosts />} />
+        <Route path="/portfolio/:userId" element={<PortFolio />} />
       </Routes>
     </Router>
   );

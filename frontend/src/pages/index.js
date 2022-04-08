@@ -9,6 +9,7 @@ import FollowersFollowings from "./FollowersFollowings/FollowersFollowings";
 import UpdatePic from "./UpdatePic/UpdatePic";
 import Post from "./Post/Post";
 import UserPosts from "./UserPosts/UserPosts";
+import PortFolio from "./PortFolio/PortFolio";
 
 export {
   OnBoarding,
@@ -22,4 +23,5 @@ export {
   UpdatePic,
   Post,
   UserPosts,
+  PortFolio
 };
