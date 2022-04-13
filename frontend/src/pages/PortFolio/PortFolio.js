@@ -2,11 +2,28 @@ import "./PortFolio.scss";
 import { ImLinkedin } from "react-icons/im";
 import { MdEmail } from "react-icons/md";
 import { ImGithub } from "react-icons/im";
-// import { FaShareAlt } from "react-icons/fa";
+import { BiShareAlt } from "react-icons/bi";
+import { RiWhatsappLine } from "react-icons/ri";
+import { MdOutlineEmail } from "react-icons/md";
+import { RiLinkedinBoxLine } from "react-icons/ri";
 
 const PortFolio = () => {
   return (
     <div className="portfolio-container">
+      <div className="sharer">
+        <a href="fjdkfdljdf">
+          <RiLinkedinBoxLine />
+        </a>
+        <a href="fdgg">
+          <MdOutlineEmail />
+        </a>
+        <a href="fdfd">
+          <RiWhatsappLine />
+        </a>
+        <a href="fdf">
+          <BiShareAlt />
+        </a>
+      </div>
       <div className="links">
         <a
           href={`https://wa.me/WhatsAppNumber?text=${encodeURI(
