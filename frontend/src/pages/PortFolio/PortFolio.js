@@ -11,23 +11,29 @@ const PortFolio = () => {
   return (
     <div className="portfolio-container">
       <div className="sharer">
-        <a href="fjdkfdljdf">
+        <a
+          href={`https://www.linkedin.com/sharing/share-offsite/?url=${"https://thewonderlearn.com"}`}
+        >
           <RiLinkedinBoxLine />
         </a>
-        <a href="fdgg">
+        <a
+          href="mailto:?subject=Portfolio of &amp;body=Good evening sir/ma'am. This is my portfolio please take a look on it."
+          title="Share by Email"
+        >
           <MdOutlineEmail />
         </a>
-        <a href="fdfd">
+
+        <a href="https://api.whatsapp.com/send?text=https://thewonderlearn.com">
           <RiWhatsappLine />
         </a>
-        <a href="fdf">
+        <div style={{ cursor: "pointer" }}>
           <BiShareAlt />
-        </a>
+        </div>
       </div>
       <div className="links">
         <a
-          href={`https://wa.me/WhatsAppNumber?text=${encodeURI(
-            "Text to send."
+          href={`https://api.whatsapp.com/WhatsAppNumber?text=${encodeURI(
+            "This is my portfolio. Please take a look on it."
           )}`}
         >
           <ImGithub />
@@ -59,11 +65,15 @@ const PortFolio = () => {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
           alias maiores veniam hic earum non at blanditiis amet saepe! Amet!
         </p>
-        <a href="sendto:abhishek@gmail.com" className="button">
+        <a
+          href={`https://api.whatsapp.com/WhatsAppNumber?text=${encodeURI(
+            "This is my portfolio. Please take a look on it."
+          )}`}
+          className="button"
+        >
           Contact Me
         </a>
       </div>
-      {/* <FaShareAlt /> */}
     </div>
   );
 };
