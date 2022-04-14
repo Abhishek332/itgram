@@ -1,7 +1,7 @@
 import "./NavBar.scss";
 import { Logo, DefaultAvatar } from "../../assets/images";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { USER_LOGIN } from "../../redux/login/constant";
@@ -9,13 +9,17 @@ import { USER_SIGNUP } from "../../redux/signup/constant";
 import { BiArrowBack } from "react-icons/bi";
 
 const NavBar = () => {
-  const navigate = useNavigate(),
-    { pathname } = useLocation(),
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem("userInfo")) navigate("/");
+  }, [navigate]);
+
+  const { pathname } = useLocation(),
     dispatch = useDispatch(),
     [toggler, setToggler] = useState(false),
     userInfo = JSON.parse(localStorage.getItem("userInfo") ?? ""),
-    userId = userInfo._id,
-    profilePic = userInfo.profilePic;
+    { _id: userId, profilePic } = userInfo;
 
   const handleLogout = () => {
     localStorage.clear();

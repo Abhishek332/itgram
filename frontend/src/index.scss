@@ -42,6 +42,62 @@ button {
   color: $primary;
 }
 
-.page-container{
+.page-container {
   @include pageWrapper;
+}
+
+.form-box {
+  padding: 20px;
+  width: 470px;
+  background-color: $primary_1;
+  border-radius: 10px;
+  margin-right: 20px;
+  @include flexCenter(center, center, column);
+  input,
+  button {
+    height: 45px;
+    margin: 20px;
+  }
+  h2 {
+    text-align: center;
+  }
+  input {
+    width: 100%;
+    padding: 10px;
+    box-shadow: 1px 1px 3px rgba(245, 188, 188, 0.883);
+  }
+  textarea {
+    margin: 20px;
+    width: 100%;
+    padding: 10px;
+    box-shadow: 1px 1px 3px rgba(245, 188, 188, 0.883);
+    border: none;
+    outline: none;
+  }
+  button {
+    background-color: $primary;
+    color: $secondary_1;
+    width: 50%;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  p {
+    font-size: 14px;
+    span {
+      font-weight: 600;
+      cursor: pointer;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .form-box {
+    width: 90%;
+    margin-right: 0;
+    input,
+    button {
+      height: 40px;
+      margin: 15px;
+    }
+  }
 }

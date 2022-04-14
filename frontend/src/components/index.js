@@ -5,5 +5,15 @@ import Footer from "./Footer/Footer";
 import PopupGenerator from "./PopupGenerator/PopupGenerator";
 import CommentBox from "./CommentBox/CommentBox";
 import FollowBox from "./FollowBox/FollowBox";
+import PortFolioForm from "./PortFolioForm/PortFolioForm";
 
-export { NavBar, Loader, PostCard, Footer, PopupGenerator, CommentBox, FollowBox };
+export {
+  NavBar,
+  Loader,
+  PostCard,
+  Footer,
+  PopupGenerator,
+  CommentBox,
+  FollowBox,
+  PortFolioForm,
+};

@@ -55,8 +55,9 @@ const Authenticator = () => {
   }, [UserLogInError, dispatch, toaster]);
 
   useEffect(() => {
-    if (UserSignUpInfo || UserLogInInfo) navigate("/homepage");
-  }, [UserSignUpInfo, UserLogInInfo, navigate]);
+    if (UserSignUpInfo || UserLogInInfo)
+      navigate("/homepage", {state: { source }});
+  }, [UserSignUpInfo, UserLogInInfo, navigate, source]);
 
   const handleChange = ({ target: { name, value } }) => {
       setState({ ...state, [name]: value });
