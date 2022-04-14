@@ -1,8 +1,13 @@
 import { PopupGenerator } from "../";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { axios } from "../../api/axios";
+import { useToaster, ToastBox } from "../../utils/toaster";
 
 const PortFolioForm = ({ source }) => {
   const [showForm, setShowForm] = useState(source === "signup"),
+    toaster = useToaster(),
+    navigate = useNavigate(),
     [portfolio, setPortfolio] = useState({
       about: "",
       whatsapp: "",
@@ -14,8 +19,13 @@ const PortFolioForm = ({ source }) => {
       setPortfolio({ ...portfolio, [name]: value });
     },
     handlePortFolioSubmit = () => {
-      console.log("Portfolio", portfolio);
-      // dispatch(portfolioCreate(state));
+      axios
+        .post("/create-portfolio", portfolio)
+        .then(({ data: { message, portfolioId } }) => {
+          toaster("success", message);
+          navigate(`/portfolio/${portfolioId}`);
+        })
+        .catch((err) => console.log(err));
     };
 
   return (
@@ -59,6 +69,7 @@ const PortFolioForm = ({ source }) => {
           </div>
         </PopupGenerator>
       )}
+      <ToastBox />
     </div>
   );
 };
