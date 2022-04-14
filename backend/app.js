@@ -3,9 +3,11 @@ import mongoose from "mongoose";
 import { MONGOURI } from "./keys.js";
 import "./models/user.js";
 import "./models/post.js";
+import "./models/portfolio.js";
 import { AuthRouter } from "./routes/auth.js";
 import { PostRouter } from "./routes/post.js";
 import { UserRouter } from "./routes/user.js";
+import { PortfolioRouter } from "./routes/portfolio.js";
 
 //Connect with database
 mongoose.connect(MONGOURI);
@@ -24,3 +26,4 @@ app.use(express.json());
 app.use(AuthRouter);
 app.use(PostRouter);
 app.use(UserRouter);
+app.use(PortfolioRouter);
