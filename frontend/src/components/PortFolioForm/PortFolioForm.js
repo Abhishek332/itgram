@@ -21,9 +21,9 @@ const PortFolioForm = ({ source }) => {
     handlePortFolioSubmit = () => {
       axios
         .post("/create-portfolio", portfolio)
-        .then(({ data: { message, portfolioId } }) => {
+        .then(({ data: { message, userId } }) => {
           toaster("success", message);
-          navigate(`/portfolio/${portfolioId}`);
+          navigate(`/portfolio/${userId}`);
         })
         .catch((err) => console.log(err));
     };

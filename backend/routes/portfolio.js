@@ -15,15 +15,22 @@ PortfolioRouter.post("/create-portfolio", requireLogin, (req, res) => {
     whatsapp,
     github,
     linkedin,
-    user: req.user,
+    user: req.user._id,
   });
   portfolio
     .save()
     .then((result) =>
       res.json({
         message: "Portfolio Created Successfully",
-        portfolioId: result._id,
+        userId: req.user._id,
       })
     )
     .catch((err) => console.log(err));
+});
+
+PortfolioRouter.get("/get-portfolio/:userId", requireLogin, (req, res) => {
+  Portfolio.findOne({ user: req.params.userId })
+    .populate("user", "name email profilePic")
+    .then((portfolio) => res.json(portfolio))
+    .catch((error) => console.log(error));
 });

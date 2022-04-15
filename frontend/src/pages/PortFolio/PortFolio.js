@@ -6,8 +6,21 @@ import { BiShareAlt } from "react-icons/bi";
 import { RiWhatsappLine } from "react-icons/ri";
 import { MdOutlineEmail } from "react-icons/md";
 import { RiLinkedinBoxLine } from "react-icons/ri";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { axios } from "../../api/axios";
 
 const PortFolio = () => {
+  const [data, setData] = useState(),
+    { userId } = useParams();
+
+  useEffect(() => {
+    axios
+      .get(`/get-portfolio/${userId}`)
+      .then((res) => setData(res.data))
+      .catch((err) => console.log(err));
+  }, [userId]);
+
   return (
     <div className="portfolio-container">
       <div className="sharer">
@@ -30,50 +43,35 @@ const PortFolio = () => {
           <BiShareAlt />
         </div>
       </div>
-      <div className="links">
-        <a
-          href={`https://api.whatsapp.com/WhatsAppNumber?text=${encodeURI(
-            "This is my portfolio. Please take a look on it."
-          )}`}
-        >
-          <ImGithub />
-        </a>
-        <a
-          href={`https://wa.me/WhatsAppNumber?text=${encodeURI(
-            "Text to send."
-          )}`}
-        >
-          <ImLinkedin />
-        </a>
-        <a
-          href={`https://wa.me/WhatsAppNumber?text=${encodeURI(
-            "Text to send."
-          )}`}
-        >
-          <MdEmail />
-        </a>
-      </div>
-      <img
-        src="https://res.cloudinary.com/itgrampics/image/upload/v1648578715/ldnojqhypy8402gzig6h.jpg"
-        alt=""
-        className="user-image"
-      />
-      <div className="content">
-        <h6>I'm</h6>
-        <h1>Abhishek Porwal</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-          alias maiores veniam hic earum non at blanditiis amet saepe! Amet!
-        </p>
-        <a
-          href={`https://api.whatsapp.com/WhatsAppNumber?text=${encodeURI(
-            "This is my portfolio. Please take a look on it."
-          )}`}
-          className="button"
-        >
-          Contact Me
-        </a>
-      </div>
+      {data && (
+        <>
+          <div className="links">
+            <a href={data.github}>
+              <ImGithub />
+            </a>
+            <a href={data.linkedin}>
+              <ImLinkedin />
+            </a>
+            <a href={`mailto:${data.email}`}>
+              <MdEmail />
+            </a>
+          </div>
+          <img src={data.profilePic} alt="" className="user-image" />
+          <div className="content">
+            <h6>I'm</h6>
+            <h1>{data.name}</h1>
+            <p>{data.about}</p>
+            <a
+              href={`https://api.whatsapp.com/${data.whatsapp}?text=${encodeURI(
+                `Hy ${data.name} I just come to your portfolio. Your profile is quite interesting. Can we have a chat.`
+              )}`}
+              className="button"
+            >
+              Contact Me
+            </a>
+          </div>
+        </>
+      )}
     </div>
   );
 };
