@@ -13,7 +13,8 @@ import { Loader2 } from "../../assets/images";
 import { useToaster, ToastBox } from "../../utils/toaster";
 
 const HomePage = () => {
-  const { state : {source} } = useLocation(),
+  const { state } = useLocation(),
+    source = state?.source || "auto-redirect",
     navigate = useNavigate(),
     toaster = useToaster(),
     dispatch = useDispatch(),
