@@ -78,6 +78,9 @@ const NavBar = () => {
           >
             Profile
           </Link>
+          <Link to={`/portfolio/${userId}`} className="nav-link">
+            View Portfolio
+          </Link>
           <p className="nav-link" onClick={() => handleLogout()}>
             Logout
           </p>
