@@ -9,6 +9,7 @@ import { RiLinkedinBoxLine } from "react-icons/ri";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { axios } from "../../api/axios";
+import { Pavatar } from "../../assets/images";
 
 const PortFolio = () => {
   const [data, setData] = useState(),
@@ -25,18 +26,21 @@ const PortFolio = () => {
     <div className="portfolio-container">
       <div className="sharer">
         <a
-          href={`https://www.linkedin.com/sharing/share-offsite/?url=${"https://thewonderlearn.com"}`}
+          href={`https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}`}
         >
           <RiLinkedinBoxLine />
         </a>
         <a
-          href="mailto:?subject=Portfolio of &amp;body=Good evening sir/ma'am. This is my portfolio please take a look on it."
+          href={`mailto:?subject=Portfolio of ${data?.name}&amp;body=Good evening sir/ma'am. This is my portfolio please take a look on it.`}
           title="Share by Email"
         >
           <MdOutlineEmail />
         </a>
 
-        <a href="https://api.whatsapp.com/send?text=https://thewonderlearn.com">
+        <a
+          href={`https://api.whatsapp.com/send?text=${window.location.href}`}
+          data-action="share/whatsapp/share"
+        >
           <RiWhatsappLine />
         </a>
         <div style={{ cursor: "pointer" }}>
@@ -56,7 +60,7 @@ const PortFolio = () => {
               <MdEmail />
             </a>
           </div>
-          <img src={data.profilePic} alt="" className="user-image" />
+          <img src={data.profilePic || Pavatar} alt="" className="user-image" />
           <div className="content">
             <h6>I'm</h6>
             <h1>{data.name}</h1>
