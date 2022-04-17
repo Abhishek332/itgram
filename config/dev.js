@@ -1,4 +1,5 @@
 export const DEV_KEYS = {
-  MONGOURI: "Add your mongoDB Atlas url here",
-  JWT_SECRET: "Add your custom key for JSON web Token",
+  MONGOURI:
+    "mongodb+srv://AbhishekItGram:UserCluster@user.2kejx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  JWT_SECRET: "fsdojgopwjgt454gdd",
 };
