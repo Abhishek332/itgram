@@ -31,7 +31,7 @@ const NavBar = () => {
   return (
     <>
       <div className="nav-wrapper">
-        {pathname.includes("profile" || "homepage") ? (
+        {pathname.includes("profile") || pathname.includes("homepage") ? (
           <img
             src={Logo}
             className="logo"

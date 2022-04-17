@@ -2,8 +2,9 @@ import express from "express";
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import JWT from "jsonwebtoken";
-import { JWT_SECRET } from "../keys.js";
-import { requireLogin } from "../middleware/requireLogin.js";
+import Keys from "../config/keys.js";
+
+const { JWT_SECRET } = Keys();
 
 const User = mongoose.model("User");
 export const AuthRouter = express.Router();

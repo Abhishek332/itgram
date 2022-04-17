@@ -1,6 +1,8 @@
 import JWT from "jsonwebtoken";
 import mongoose from "mongoose";
-import { JWT_SECRET } from "../keys.js";
+import Keys from "../config/keys.js";
+
+const { JWT_SECRET } = Keys();
 
 const User = mongoose.model("User");
 
