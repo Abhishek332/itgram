@@ -66,7 +66,9 @@ const PortFolio = () => {
             <h1>{data.name}</h1>
             <p>{data.about}</p>
             <a
-              href={`https://api.whatsapp.com/${data.whatsapp}?text=${encodeURI(
+              href={`https://api.whatsapp.com/+91${
+                data.whatsapp
+              }?text=${encodeURI(
                 `Hy ${data.name} I just come to your portfolio. Your profile is quite interesting. Can we have a chat.`
               )}`}
               className="button"
