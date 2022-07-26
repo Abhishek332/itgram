@@ -33,7 +33,7 @@ const app = express();
 // }
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server is running at ${PORT}`));
+
 app.use(
   cors({
     origin: [
@@ -48,3 +48,5 @@ app.use(AuthRouter);
 app.use(PostRouter);
 app.use(UserRouter);
 app.use(PortfolioRouter);
+
+app.listen(PORT, () => console.log(`Server is running at ${PORT}`));
