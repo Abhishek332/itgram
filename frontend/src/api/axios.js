@@ -10,7 +10,7 @@ let headers = {
 if (userInfo) {
   headers = {
     "Content-Type": "application/json",
-    Authorization: JSON.parse(userInfo).token,
+    Authorization: `Bearer ${JSON.parse(userInfo).token}`,
   };
 }
 
