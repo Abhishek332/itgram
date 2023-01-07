@@ -1,29 +1,19 @@
-import { USER_SIGNUP } from "./constant";
-import { axios } from "../../api/axios";
+import { USER_SIGNUP } from './constant';
+import { axios } from '../../api/axios';
 
-export const userSignUp = (obj = { name: "", email: "", password: "" }) => {
-  return async (dispatch) => {
-    dispatch({ type: USER_SIGNUP.REQUEST });
+export const userSignUp = (obj = { name: '', email: '', password: '' }) => {
+	return async (dispatch) => {
+		dispatch({ type: USER_SIGNUP.REQUEST });
 
-    try {
-      axios
-        .post("/signup", obj)
-        .then((res) => {
-          localStorage.setItem("userInfo", JSON.stringify(res.data));
-          dispatch({ type: USER_SIGNUP.SUCCESS, payload: res.data });
-        })
-        .catch((err) => {
-          dispatch({
-            type: USER_SIGNUP.FAIL,
-            payload: err.response.data.error,
-          });
-        });
-    } catch (error) {
-      console.log(error);
-      dispatch({
-        type: USER_SIGNUP.FAIL,
-        payload: "Something Went Wrong, Please try again",
-      });
-    }
-  };
+		try {
+			const res = await axios.post('/signup', obj);
+			localStorage.setItem('userInfo', JSON.stringify(res.data));
+			dispatch({ type: USER_SIGNUP.SUCCESS, payload: res.data });
+		} catch (error) {
+			dispatch({
+				type: USER_SIGNUP.FAIL,
+				payload: error.response.data.error,
+			});
+		}
+	};
 };
